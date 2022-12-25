@@ -15,18 +15,18 @@ layout: default
       <br>
       <span>on&nbsp;</span><time datetime="{{ page.date }}">{{ page.date | date: "%B %d, %Y" }}</time>
     {% endif %}
+    {% if page.tags %}
+      {% for tag in page.tags %}
+        <span class="tag">{{ tag }}</span>
+      {% endfor %}
+    {% endif %}
   </div>
 
   <h1 class="post-title">{{ page.title }}</h1>
   <div class="post-line"></div>
 
-  {% if page.tags %}
-    {% for tag in page.tags %}
-      <span class="tag">{{ tag }}</span>
-    {% endfor %}
-  {% endif %}
-
   {{ content }}
+
 </div>
 
 {% if page.comments %}
