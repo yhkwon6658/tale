@@ -19,14 +19,16 @@ layout: default
 
   <h1 class="post-title">{{ page.title }}</h1>
   <div class="post-line"> </div>
-  <body>
-    <div style="float:left; margin-right:3px;">
-      <img src="/assets/tags/tags-32x32.png" alt=""> 
-    </div>
-    <div style="float:left;">
-    <a href="{{ '/tags' | prepend: site.baseurl }}">{{ page.tags }}</a>
-    </div><div style="clear:both;"></div>
-  </body>
+  {% if page.tags %}
+    <body>
+      <div style="float:left; margin-right:3px;">
+        <img src="/assets/tags/tags-32x32.png" alt=""> 
+      </div>
+      <div style="float:left;">
+      <a href="{{ '/tags' | prepend: site.baseurl }}">{{ page.tags }}</a>
+      </div><div style="clear:both;"></div>
+    </body>
+  {% endif %}
 
   {{ content }}
 
