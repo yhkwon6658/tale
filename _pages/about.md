@@ -5,7 +5,7 @@ author: "Yonghwan Kwon"
 permalink: /about/
 ---
 
-Hi! I'm a student of KyungHee Univ. Electonic enginering B.S. course.
+Hi! I'm a B.S. candidate of KyungHee University's Electronic Enginering Course.
 
 ## Interests
 - FPGA implementation Neural-Network and Signal-Processings.
