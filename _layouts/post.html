@@ -24,14 +24,6 @@ layout: default
 
 </div>
 
-<h6>Category: 
-  {% if page.tags %}
-    {% for tag in page.tags %}
-      <span class="tag">{{ tag }}</span>
-    {% endfor %}
-  {% endif %}
-</h6>
-
 {% if page.comments %}
   {% include disqus_comments.html %}
 {% endif %}
