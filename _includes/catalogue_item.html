@@ -4,6 +4,7 @@
     <span class="catalogue-pinned">Pinned &middot;</span>
     {% endif %}
     <time datetime="{{ post.date }}" class="catalogue-time">{{ post.date | date: "%B %d, %Y" }}</time>
+    Category: {{ post.tags }}
     <h1 class="catalogue-title">{{ post.title }}</h1>
     <div class="catalogue-line"></div>
 
@@ -13,7 +14,6 @@
       {% else %}
         {{ post.content | strip_html | truncatewords: 30 }}
       {% endif %}
-      <h4> Category: {{ post.tags }} </h4>
     </p>
   </div>
 </a>
