@@ -4,10 +4,9 @@
     <span class="catalogue-pinned">Pinned &middot;</span>
     {% endif %}
     <time datetime="{{ post.date }}" class="catalogue-time">{{ post.date | date: "%B %d, %Y" }}</time>
-    Category: {{ post.tags }}
     <h1 class="catalogue-title">{{ post.title }}</h1>
     <div class="catalogue-line"></div>
-
+    <div>{{ post.tags }}</div>
     <p>
       {% if post.excerpt_separator %}
         {{ post.excerpt | strip_html }}
