@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Implement In Place FFT Architecture"
-author: "Yonghwan"
-tags: Example
+title: "Implement In-Place FFT Architecture"
+author: "Yonghwan Kwon"
+tags: In-Place FFT
 excerpt_separator: <!--more-->
 ---
 
@@ -16,6 +16,7 @@ excerpt_separator: <!--more-->
 # FPGA
 {% highlight markdown %}
 Terasic의 `DE2`를 사용하였다. 기본 연산기로 사용되는 FPU의 경우 Quartus II의 Standard IP를 사용하였다. Xilinx 계열의 보드를 사용하는 경우 Vivado 에서 제공하는 Standard IP를 사용하거나 Open library로 제공되는 FPU 를 사용하는 것을 추천한다.  
+{% endhighlight %}
 
 # Spectrogram
 
