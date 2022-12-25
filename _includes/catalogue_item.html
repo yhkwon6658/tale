@@ -3,8 +3,8 @@
     {% if include.sticky == 'true' %}
     <span class="catalogue-pinned">Pinned &middot;</span>
     {% endif %}
+    {{ post.tags }}.
     <time datetime="{{ post.date }}" class="catalogue-time">{{ post.date | date: "%B %d, %Y" }}</time>
-    <div>{{ post.tags }}</div>
     <h1 class="catalogue-title">{{ post.title }}</h1>
     <div class="catalogue-line"></div>
     <p>
