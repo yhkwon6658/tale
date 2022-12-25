@@ -8,7 +8,8 @@ permalink: /about/
 Hi! I'm a B.S. candidate of KyungHee University's Electronic Enginering Course.
 
 ## Interests
-- FPGA implementation Neural-Network and Signal-Processings.
+- Hardware Implmentation of Neural-Networks.
+- Image-Processings.
 
 ## Techniques
 - Verilog HDL
