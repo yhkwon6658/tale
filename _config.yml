@@ -2,6 +2,8 @@
 title:          Yonghwan Kwon
 description:    Blogging the digital circuits
 url:            "https://yhkwon6658.github.io"
+future: true
+published: true
 
 # Google Analytics
 google_analytics: UA—XXXXXXXX-X
