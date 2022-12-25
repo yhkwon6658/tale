@@ -13,8 +13,7 @@
       {% else %}
         {{ post.content | strip_html | truncatewords: 30 }}
       {% endif %}
+      <h6> Category: {{ post.tags }} </h6>
     </p>
-    
-    tags: {{ post.tags }}
   </div>
 </a>

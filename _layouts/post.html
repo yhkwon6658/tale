@@ -24,20 +24,17 @@ layout: default
 
 </div>
 
-<div>
-  tags: 
+<h6>Category: 
   {% if page.tags %}
     {% for tag in page.tags %}
       <span class="tag">{{ tag }}</span>
     {% endfor %}
   {% endif %}
-</div>
+</h6>
 
-<div>
 {% if page.comments %}
   {% include disqus_comments.html %}
 {% endif %}
-</div>
 
 <div class="pagination">
   {% if page.next.url %}
