@@ -65,9 +65,9 @@ Decomposition
 `본 논문은 LHS의 
 n_R-2-c, k_c
 에서 중간에 `,`가 누락되었다.`  
-RHS의 F와 LHS의 F를 보면 DFT의 결과로 n이 하나 줄고, k가 하나 늘어난 것을 알 수 있다. Johnson은 flow chart를 기준으로 stage마다 n과 k로 indexing을 달리 하는데, Radix 4, 64-point FFT를 한다고 가정하면, 최초의 stage 1은 {n2,n1,n0}의 modulo 4로 0부터 63까지의 모든 숫자를 표현할 수 있다. stage 2에서는 {k0,n1,n0}로 표기한다. 이때, 각 자리에 대한 index의 종류가 n에서 k로 변하는 것일 뿐 예를 들어 63은 stage에 관계없이 {3,3,3}을 의미한다. 이때, n0와 n1이 0이라고 가정하면 summation은 F(0,0,0), F(0,0,1), F(0,0,2), F(0,0,3)에 대하여 진행된다는 것을 알 수 있다. 이는 우리가 흔히 알고있는 DIT flow와 같은 것을 알 수 있다. 해당 notation만 이해하면 twiddle factor를 이해하는 것은 큰 문제가 되지 않을 것이라 생각한다.  
+RHS의 F와 LHS의 F를 보면 DFT의 결과로 n이 하나 줄고, k가 하나 늘어난 것을 알 수 있다. Johnson은 flow chart를 기준으로 stage마다 n과 k로 indexing을 달리 하는데, Radix 4, 64-point FFT를 한다고 가정하면, 최초의 stage 1은 {n0,n1,n2}의 modulo 4로 0부터 63까지의 모든 숫자를 표현할 수 있다. stage 2에서는 {n0,n1,k0}로 표기한다. 이때, 각 자리에 대한 index의 종류가 n에서 k로 변하는 것일 뿐 예를 들어 63은 stage에 관계없이 {3,3,3}을 의미한다. 이때, n0와 n1이 0이라고 가정하면 summation은 F(0,0,0), F(0,0,1), F(0,0,2), F(0,0,3)에 대하여 진행된다는 것을 알 수 있다. 이는 우리가 흔히 알고있는 DIT flow와 같은 것을 알 수 있다. 해당 notation만 이해하면 twiddle factor를 이해하는 것은 큰 문제가 되지 않을 것이라 생각한다.  
 k_c
-의 자리에 0, 1, 2, 3을 한번씩 넣어보면 올바른 결과를 얻을 수 있을 것이다. 이 논문은 typo임을 파악하고, Notation의 의미만 이해하면 그 이후 과정은 수월하게 이해할 수 있다.
+의 자리에 0, 1, 2, 3을 한번씩 넣어보면 올바른 결과를 얻을 수 있을 것이다. 이 논문은 typo임을 파악하고, notation의 의미만 이해하면 그 이후 과정은 수월하다.
 
 ## II. Memory Bank Partition
 Johnson은 다음 수식을 통해 `"flow chart상에서 stage에 관계없이 같은 line에 있는 data는 모두 같은 memory bank에 위치하며 같은 address를 갖는다."`를 설명한다.  
