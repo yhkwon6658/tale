@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Convolution layey 의 kernel 개수"
+title: "Convolution layer의 kernel 개수"
 autoh: "Yonghwan Kwon"
 tags: "CNN"
 comments: true
