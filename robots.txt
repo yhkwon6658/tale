@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://https://yhkwon6658.github.io/sitemap.xml
