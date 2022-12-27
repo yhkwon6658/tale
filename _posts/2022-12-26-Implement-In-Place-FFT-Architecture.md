@@ -5,7 +5,6 @@ author: "Yonghwan Kwon"
 tags: "Project"
 comments: true
 excerpt_separator: <!--more-->
-mathjax: true
 ---
 
 이번 프로젝트에서는 `In-Place FFT Architecture`를 `Verilog HDL`을 이용해 `FPGA`에 포팅하고, `GUI`프로그램을 만들어 FPGA와 PC간 `UART 통신`을 이용해 FPGA에서 FFT를 수행하고, PC는 FPGA에서 데이터를 받아 `Spectrogram`으로 출력하였다. <!--more--> 
