@@ -99,7 +99,9 @@ Johnson이 제안한 architecture를 보면 exponent를 선택할 때, 0번 날�
 ## VI. Case of DIF
 ![image](https://user-images.githubusercontent.com/120978778/210111058-d6168263-55cf-4b45-af88-90266ef51bbc.png)  
 DIF는 비교적 간단하게 설명할 것이다. 여기서 n_1은 typo다. n_0로 수정해야 한다. 이 논문이 어려운 이유는 notation에 대한 설명없이 제시된 F라는 식이 DIT, DIF모두 typo를 포함하고 있기 때문이다. 좌변의 f도 F와 동일한 의미로 특별한 차이는 없다.  
+
 Memory banking은 DIT, DIF 관계없이 동일한 알고리즘을 따른다.  
+
 ![image](https://user-images.githubusercontent.com/120978778/210111239-c6ccff2e-28ac-4020-998c-cd4e9e6e1e3a.png)  
 Addressing은 상위 R-1개의 digits을 선택한다.  
 ![image](https://user-images.githubusercontent.com/120978778/210111548-6f1a842b-1b50-466e-ade7-2503748ddecc.png)  
