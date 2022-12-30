@@ -122,7 +122,7 @@ Johnson은 DIF의 경우 Twiddle factor의 식은 제시하지 않았다. 앞서
 [Github](https://github.com/yhkwon6658/Inplace-FFT) 에서 모든 코드는 다운로드 받았다고 가정하도록 하겠습니다.  
 우선 DATA/Resampler.m 을 열도록 합니다.  
 
-```MATLAB
+```matlab
 lear;
 clc;
 close all;
