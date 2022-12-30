@@ -47,6 +47,7 @@ Twiddle factor
 DFT 수식과 Twiddle factor에 대한 설명은 생략한다.  
 Decomposition  
 ![image](https://user-images.githubusercontent.com/120978778/209724382-83c7dd29-e51e-413c-a282-9791878a37eb.png)  
+
 `본 논문은 LHS의 n_R-2-c, k_c 에서 중간에 `,`가 누락되었다.`  
 RHS의 F와 LHS의 F를 보면 DFT의 결과로 n이 하나 줄고, k가 하나 늘어난 것을 알 수 있다. Johnson은 flow chart를 기준으로 stage마다 n과 k로 indexing을 달리 하는데, Radix 4, 64-point FFT를 한다고 가정하면, 최초의 stage 0은 {n0,n1,n2}의 modulo 4로 0부터 63까지의 모든 숫자를 표현할 수 있다. stage 1에서는 {n0,n1,k0}로 표기한다. 이때, 각 자리에 대한 index의 종류가 n에서 k로 변하는 것일 뿐 예를 들어 63은 stage에 관계없이 {3,3,3}을 의미한다. 이때, n0와 n1이 0이라고 가정하면 summation은 F(0,0,0), F(0,0,1), F(0,0,2), F(0,0,3)에 대하여 진행된다는 것을 알 수 있다. 이는 우리가 흔히 알고있는 DIT의 flow와 같다.  
 k_c
