@@ -46,9 +46,8 @@ Twiddle factor
 
 DFT 수식과 Twiddle factor에 대한 설명은 생략한다.  
 Decomposition  
-![image](https://user-images.githubusercontent.com/120978778/209724382-83c7dd29-e51e-413c-a282-9791878a37eb.png)  
-
-`본 논문은 LHS의 n_R-2-c, k_c 에서 중간에 `,`가 누락되었다.`  
+![image](https://user-images.githubusercontent.com/120978778/209724382-83c7dd29-e51e-413c-a282-9791878a37eb.png)
+`LHS의 n_R-2-c, k_c 에서 중간에 `,`가 누락되었다.`  
 RHS의 F와 LHS의 F를 보면 DFT의 결과로 n이 하나 줄고, k가 하나 늘어난 것을 알 수 있다. Johnson은 flow chart를 기준으로 stage마다 n과 k로 indexing을 달리 하는데, Radix 4, 64-point FFT를 한다고 가정하면, 최초의 stage 0은 {n0,n1,n2}의 modulo 4로 0부터 63까지의 모든 숫자를 표현할 수 있다. stage 1에서는 {n0,n1,k0}로 표기한다. 이때, 각 자리에 대한 index의 종류가 n에서 k로 변하는 것일 뿐 예를 들어 63은 stage에 관계없이 {3,3,3}을 의미한다. 이때, n0와 n1이 0이라고 가정하면 summation은 F(0,0,0), F(0,0,1), F(0,0,2), F(0,0,3)에 대하여 진행된다는 것을 알 수 있다. 이는 우리가 흔히 알고있는 DIT의 flow와 같다.  
 k_c
 의 자리에 0, 1, 2, 3을 한번씩 넣어보면 올바른 결과를 얻을 수 있을 것이다.
@@ -75,7 +74,7 @@ F의 파라미터 개수를 다시 생각해보자. Modulo r로 N개의 data를 
 ![image](https://user-images.githubusercontent.com/120978778/210103249-b2e8d11a-d003-4219-96fc-fdd7d8387115.png)  
 Twiddle factor의 경우 특별한 설명없이 결과식이 제시되었다. 
 ![image](https://user-images.githubusercontent.com/120978778/210104342-4f0e17bf-b95e-4da8-bcbf-462bcbeac4b6.png)  
-Radix-4의 경우 DIT에 해당하는 flow chart가 없어 Radix-2로 가장 간단한 8-Point를 예시로 드려고 한다. Stage 1에서는 W_8(0), W_8(2)를 갖는데, Twiddle factor의 성질에 다라서 W_4(0), W_4(1)을 갖는다고 볼 수 있다. Stage 2에서는 W_8(0), W_8(1), W_8(2), W_8(3)을 갖는다. 이를 다시 생각해보면 Stage 를 거칠 때마다 경우의 수가 r배씩 증가하고, 이를 수식에서는 k라고 표현하였는데 stage 1에서 k는 k0, stage 2에서 k는 k1k0를 의미한다. 1개의 digit이 증가하면서 표현할 수 있는 수가 r배 증가했기 때문에 mod r^c 로 stage 마다 modulo 를 r 배씩 증가시킨다. stage 0에 k는 존재하지 않는데, 이 논문에서 존재하지 않는 값은 모두 0으로 간주해야 한다. stage 1에서는 n_1 * (k0 mod 2)가 된다. 제시된 flow chart에서 x(6)을 F(1,1,0)으로 착각할 수 있는데, 이 논문에서는 몇번째 라인에 위치하는지를 기준으로 하기 때문에 x(6)은 F(0,1,1) 이라는 것을 주의해야 한다. 파라미터 n은 stride를 결정짓는 위치에 존재하는 파리미터를 선택하는 것을 알 수 있다. 이는 twiddle factor가 butterfly상에서 2번째 위치에서만 달라지고 1번째 위치에서는 항상 W_N(0)이기 떄문이다. 위의 그림에서 N에 해당하는 값은 2, 4, 8로 증가하고, n은 stride를 결정하는 파라미터, k는 가짓수를 결정하기 위해 사용되어 1, 2, 4가 되도록 한다. 최대한 결과식의 의미를 일반적으로 읽을 수 있도록 해봤는데 수학적인 증명보다는 flow chart를 보면서 그 특징을 찾아 수식화 되었을 가능성이 크다고 생각한다. 이후, 하드웨어로 구현하기 위해서 변형되는 수식에서도 결과식만 제시 되는데 같은 방법으로 해석하면서 여러가지 케이스에 대하여 검증해 보는 것을 추천한다.  
+Radix-4의 경우 DIT에 해당하는 flow chart가 없어 Radix-2로 가장 간단한 8-Point를 예시로 드려고 한다. Stage 1에서는 W_8(0), W_8(2)를 갖는데, Twiddle factor의 성질에 따라서 W_4(0), W_4(1)을 갖는다고 볼 수 있다. Stage 2에서는 W_8(0), W_8(1), W_8(2), W_8(3)을 갖는다. 이를 다시 생각해보면 Stage 를 거칠 때마다 경우의 수가 r배씩 증가하고, 이를 수식에서는 k라고 표현하였는데 stage 1에서 k는 k0, stage 2에서 k는 k1k0를 의미한다. 1개의 digit이 증가하면서 표현할 수 있는 수가 r배 증가했기 때문에 mod r^c 로 stage 마다 modulo 를 r 배씩 증가시킨다. stage 0에 k는 존재하지 않는데, 이 논문에서 존재하지 않는 값은 모두 0으로 간주해야 한다. stage 1에서는 n_1 * (k0 mod 2)가 된다. 제시된 flow chart에서 x(6)을 F(1,1,0)으로 착각할 수 있는데, 이 논문에서는 몇번째 라인에 위치하는지를 기준으로 하기 때문에 x(6)은 F(0,1,1) 이라는 것을 주의해야 한다. 파라미터 n은 stride를 결정짓는 위치에 존재하는 파리미터를 선택하는 것을 알 수 있다. 이는 twiddle factor가 butterfly상에서 2번째 위치에서만 달라지고 1번째 위치에서는 항상 W_N(0)이기 떄문이다. 위의 그림에서 N에 해당하는 값은 2, 4, 8로 증가하고, n은 stride를 결정하는 파라미터, k는 가짓수를 결정하기 위해 사용되어 1, 2, 4가 되도록 한다. 최대한 결과식의 의미를 일반적으로 읽을 수 있도록 해봤는데 수학적인 증명보다는 flow chart를 보면서 그 특징을 찾아 수식화 되었을 가능성이 크다고 생각한다. 이후, 하드웨어로 구현하기 위해서 변형되는 수식에서도 결과식만 제시 되는데 같은 방법으로 해석하면서 여러가지 케이스에 대하여 검증해 보는 것을 추천한다.  
 `(추신: DIF일 때, radix-4일 때도 직접 시도해 보는 것을 추천드립니다.)`
 
 ## V. For Hardware Implementation
