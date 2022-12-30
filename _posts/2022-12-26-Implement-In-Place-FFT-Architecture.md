@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Implement In-Place FFT Architecture"
+title: "Implemention In-Place FFT Architecture"
 author: "Yonghwan Kwon"
 tags: "Project"
 comments: true
