@@ -194,6 +194,4 @@ module TOP #(
 SDK를 통해 synthesis된 파일이 FPGA위에 정상적으로 포팅이 되었다면 SPECTRO.exe를 실행합니다. Datainfo를 누른 후 `Sample length`를 입력합니다(다른 파라미터는 수정할 필요 없습니다). Setting을 누른 후 `Serial Select Port`를 통해 FPGA와 연결된 포트를 선택합니다. `BaudRate`를 설정합니다(115200을 사용하는 것을 추천합니다). Connect를 누른 후 Run을 수행합니다. `Origianl Plot`과 `FFT by PC`가 정상적으로 Plot되면 Stop을 누른 후 다시 Run을 누릅니다. 가끔씩 UART 통신의 문제로 data가 1bit씩 밀려서 전송될 수 있습니다. 이 경우 FPGA를 reset시킨 후 다시 SPECTRO를 실행하면 보통 문제없이 정상적으로 동작합니다.
 
 ![DEMO](https://user-images.githubusercontent.com/120978778/210115307-8ddc62be-96ad-420c-a57b-b1d52ca96a3a.gif)  
-참고용 데모파일입니다.
-
-## 최종 수정일: 2022-12-31 AM 07:23
+참고용 데모영상입니다.
