@@ -13,7 +13,7 @@ excerpt_separator: <!--more-->
 이 포스팅은 코드를 설명하기 위한 용도가 아닙니다. 그러나, [링크](https://github.com/yhkwon6658/Inplace-FFT)를 통해 공개한 GUI 프로그램의 사용법을 제시하고, `Block Diagram` 수준에서 각각의 모듈을 소개합니다. 다음 논문 [L. G. Johnson's Conflict Free Memory Addressing for Dedicated FFT Hardware](https://ieeexplore.ieee.org/document/142032) 에 대한 해석과 위 논문이 가지고 있는 부족한 점을 보완, Spectrogram 에 대한 간단한 설명으로 구성되었습니다. 이 포스팅은 친절하지 않습니다. DIT, DIF, Radix, Twiddle factor 등 FFT에 사용되는 기본적인 용어들과 기초적인 수식은 숙지하고 있는 것을 전제로 작성하였습니다.
 
 # FPGA 및 Reference code
-Terasic의 `DE2`를 사용하였습니다. DE2의 경우 SDK로 Quartus II를 사용한다. FPGA와 GUI프로그램 모두 [IEEE 754 Single precision(32-bit)](https://ko.wikipedia.org/wiki/IEEE_754) 을 기준으로 한다. `Butterfly`에 사용된 `FPU`의 경우 [링크](https://opencores.org/projects/fpu)의 Usselmannm, Rudolf님의 모듈을 사용하였다. `UART CONTROLLER`에 사용된 `UART RX 및 TX 모듈`의 경우 [링크](https://nandland.com/uart-serial-port-module/)의 Nandland에서 제작한 모듈이다. ALTERA(Xilinx)계열의 보드를 사용하는 경우 Quartus(Vivado)에서 제공하는 Standard IP로 FPU를 교체하면 Syntehsis과정이 더 빨라진다.
+Terasic의 `DE2`를 사용한다. DE2의 경우 SDK로 Intel의 Quartus II가 이용된다. FPGA와 GUI프로그램 모두 [IEEE 754 Single precision(32-bit)](https://ko.wikipedia.org/wiki/IEEE_754) 을 기준으로 한다. `Butterfly`에 사용된 `FPU`의 경우 [링크](https://opencores.org/projects/fpu)의 Usselmannm, Rudolf님의 모듈을 사용하였다. `UART CONTROLLER`에 사용된 `UART RX 및 TX 모듈`의 경우 [링크](https://nandland.com/uart-serial-port-module/)의 Nandland에서 제작한 모듈이다. ALTERA(Xilinx)계열의 보드를 사용하는 경우 Quartus(Vivado)에서 제공하는 Standard IP로 FPU를 교체하면 Syntehsis과정이 더 빨라진다.
 
 # Spectrogram
 일반적으로 FFT는 data의 처리를 보다 용이하게 할 수 있도록 사용된다. Time domain의 data를 Frequency domain으로 전환함으로써 모든 data는 `Nyquist frequency`이하로 표현되며 신호처리나 DSP수업을 듣다보면 다음 그림과 같은 그래프를 자주 보게된다.
