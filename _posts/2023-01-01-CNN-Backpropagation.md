@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "CNN Backpropagation"
-autoh: "Yonghwan Kwon"
+author: "Yonghwan Kwon"
 tags: "CNN"
 comments: true
 excerpt_separator: <!--more-->
