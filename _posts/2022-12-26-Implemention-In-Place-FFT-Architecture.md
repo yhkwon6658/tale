@@ -165,7 +165,7 @@ fprintf('DONE\n');
 ```
 1) infile에 입력 데이터의 path, outfile에 출력 data의 path를 써주도록 합니다.  
 2) 입력으로 넣은 음원 파일을 Sampling할 시작 시간과 종료 시간을 설정합니다.  
-3) Sample Rate(Sampling Frequency)를 입력합니다. 현재의 코드는 8192개의 Sample을 출력합니다.
+3) Sample Rate(Sampling Frequency)를 입력합니다. 현재의 코드는 8192개의 Sample을 출력합니다.  
 4) mode를 1로 합니다.  
 
 출력된 결과는 IEEE-754 Single Precision으로 64bits를 hexadecimal로 출력합니다.  

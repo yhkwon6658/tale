@@ -67,35 +67,4 @@ print(f'second convolution layer:\t{weights[2].T.shape}') # 64 x 32 x 2 x 2
 ```
 본 코드에서는 첫번째 Conv2D와 두번째 Conv2D의 wiehgts만을 보고 있다. 이미 주석처리를 해서 알 수 있는 사실이지만 두번째 Conv2D의 weights[2].T.shape는 64 x 32 x 2 x 2 가 되는 것을 알 수 있다. kernel 하나의 size를 2x2로 설정했기 때문에 kernel의 개수는 총 64 x 32 개이다. 즉, convolution layer의 kernel 개수는 # input image x # feature map으로 정해진다. 생각해 보건데 feature map의 개수와 kernel의 개수가 동일하다는 착각은 tensorflow 모델 함수의 파라미터 이름 때문일 것이라고 추측된다. Conv2D 함수의 첫번째 파라미터의 이름은 `filters`이다. 우리는 kernel과 filter를 동일한 용어로 지칭하고 있기 때문에 두번째 Conv2D의 filters가 64라면 kernel의 개수가 64개라는 착각을 충분히 할 수 있다고 생각된다. 아마도 입력 이미지 한 장에 대한 kernel의 개수를 나타내기 위한 표현이었을 것이라 생각된다. <br/>
 
-## 마무리
-본 포스팅은 Convolution layer의 kernel 개수에 대한 오개념을 바로잡고자 작성되었습니다. 오류 및 지적은 언제든 환영합니다. 구글링을 해보면 많은 분들께서 back-propagation을 잘 설명하고 있는 것 같습니다. 그러나, 몇몇 포스팅을 보니 CNN에서의 back-propagation은 지나치게 복잡하고 이해하기 어렵게 설명된 경우가 많은 것 같습니다. 다음 게시글은 나름 `CNN back-propagation`을 쉽게 설명할 수 있도록 해보려고 합니다. 감사합니다.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 [addr_kernel]: https://user-images.githubusercontent.com/15958325/58780750-defb7480-8614-11e9-943c-4d44a9d1efc4.gif
