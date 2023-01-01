@@ -36,7 +36,7 @@ Sigmoid 함수는 다음과 같이 정의한다.
 ![image](https://user-images.githubusercontent.com/120978778/210170113-b065f373-bb48-498c-a949-74ef6e3e7d07.png)  
 Sigmoid 함수의 경우 x에 관계없이 항상 y * (1 - y) 를 gradient로 갖기 때문에 gradient 방법을 사용하기가 상당히 편리하다.  
 
-2). ReLu
+2). ReLu  
 ReLu 함수는 다음과 같이 정의한다.  
 ![image](https://user-images.githubusercontent.com/120978778/210170153-00c421ca-ae90-4edc-bd2b-695bca25f904.png)  
 max 함수는 두 변수 중 큰 값을 출력하므로 ReLu는 x가 0보다 작은 경우는 0, 그렇지 않은 경우는 y = x 형태로 출력된다.  
