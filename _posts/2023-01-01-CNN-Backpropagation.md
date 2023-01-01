@@ -62,7 +62,7 @@ z1 에 대한 w1, w2, w3 의 gradient 를 각각 구해보도록 하자.
 # Convolution Layer
 Example 까지 풀어 봤다면 이제 기본적인 FC layer 에서의 Back-Propagation 은 이해를 했을 것이다. 그러나, 많은 게시물에서 Convolution Layer 의 경우 직관적인 이해가 어려울 만큼 복잡하게 설명하고 있다. 이전 포스팅인 [Convolution Layer의 Kernel 개수](https://yhkwon6658.github.io/2022-12-28/Convolution-layer%EC%9D%98-Kernel-%EA%B0%9C%EC%88%98) 에서 Convolution Layer 의 Kernel 을 FC Layer 의 Weight 하나와 동일하게 생각하라고 이야기 했다. 이번에도 마찬가지다. Convolution Layer 의 Kernel 하나를 FC Layer 의 Weight 하나와 동일하게 생각하고 다음 내용을 읽어 나가도록 하자.  
 ![image](https://user-images.githubusercontent.com/120978778/210171592-43dc8d98-f53b-4a28-a27d-e855f71c28e0.png)  
-굳이 예시를 복잡하게 들 필요는 없기 때문에 위와 같이 간단한 형태의 구조를 통해 이해해 보도록 하자. 입력 이미지의 크기를 28x28, kernel 의 경우 zero-padding 이 되었다고 가정하여 C 의 경우 28x28, S 의 경우 14x14 라고 가정하자.  
+굳이 예시를 복잡하게 들 필요는 없기 때문에 위와 같이 간단한 형태의 구조를 통해 이해해 보도록 하자. 입력 이미지의 크기를 28x28, kernel과의 연산에서 zero-padding 을 적용했다고 가정하면, C 의 경우 28x28, S 의 경우 14x14 가 된다.  
   
 1). C  
 C의 경우 S와 Average pooling 관계에 있다. 그러나, S를 통해 C의 gradient를 구해야 하는데, un-pooling 외에는 마땅한 방법이 없다. 대다수의 논문에서도 다음과 같이 기술한다.  
