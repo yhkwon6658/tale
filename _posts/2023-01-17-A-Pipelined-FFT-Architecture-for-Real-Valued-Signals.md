@@ -18,7 +18,7 @@ https://ieeexplore-ieee-org-ssl.webgate.khu.ac.kr/document/4799153
 위의 식은 Twiddle factor 의 주기성에 의해 DFT 식에 X[N-k] 와 X*[k] 를 대입하면 증명된다.  
 
 # RFFT flow chart
-본 논문에서는 Conjugate Symmetry 에 근거하여 RFFT 의 algorithm 으로 제안되었던 몇가지 방법을 소개하고, 해당 방법들이 갖는 한계점을 간략하게 지적한다. 이번 포스팅에서는 그것들을 다루기 보다는 해당 논문에서 제안된 RFFT algorithm 에 근거한 flow chart 에 집중하도록 한다. </br>
+본 논문에서는 Conjugate Symmetry 에 근거하여 RFFT 의 algorithm 으로 제안되었던 몇가지 방법을 소개하고, 해당 방법들이 갖는 한계점을 간략하게 지적한다. 이번 포스팅에서는 그것들을 다루기 보다는 해당 논문에서 제안된 RFFT algorithm 에 근거한 flow chart 에 집중하도록 한다. <br/>
 Conjugate Symmetry 의 결론은 출력단에서 (N-2)/2 개의 데이터는 서로 대칭이라는 것이다. RFFT 의 핵심은 이 출력의 절반`(거의)`을 flow chart 에서 제거하는 것이다. 문제는 flow chart 상에서 살릴 절반과 죽일 절반을 선택하는 것인데, 기존의 연구들은 살릴 절반 k 를 [0, N/2] 혹은 [0, N/4] U [N/2, 3N/4] 로 선택하였다. 
 ![image](https://user-images.githubusercontent.com/120978778/212921607-564e5b51-c3b5-4b1c-80b7-491ab4e9390a.png)  
 위의 그림은 DIF 의 flow chart 이다. 여기서 k = [0, N/2], k = [0, N/4] U [N/2, 3N/4] 로 선택하여 선택되지 못한 나머지 출력 부분을 지우고 이에 연결된 선들을 지워 보자. 그렇게 할 경우 지워지는 영역은 별로 크지 않다. 본 논문에서는 이 점에 주목했다. 최대한 많은 영역을 지우고자 할 때, floaw chart 를 기준으로 절반을 지우고 싶겠지만 그것은 불가능하다. 다시 flow chart 의 출력단을 보도록 하자. 0과 8은 conjugate symmetry 에 해당하지 않는다. 4의 대칭은 12이고, 2와 10의 대칭은 14와 6이다. 1, 9, 5, 13 의 대칭은 15, 7, 11, 3 이다. Logarithmatic 으로 대칭이 되는 개수가 늘어나는 것을 알 수 있다. 조금만 생각해 보면 Logarithmatic 에 따라 선택하는 것이 최대한 많은 영역을 지울 수 있다는 것을 눈치챌 수 있을 것이다. 논문에서는 이를 수식으로 나타내고 있지만 이번 포스팅에서는 굳이 언급하진 않도록 하겠다.  
@@ -50,7 +50,7 @@ stage 2 와 stage 3 사이의 Shuffling 은 다음과 같이 일어난다.
 # 번외
 이 논문에서는 특별히 언급하고 있진 않지만 다음과 같은 DIT RFFT flow chart 를 보여주고 있다.  
 ![image](https://user-images.githubusercontent.com/120978778/212948549-9e167567-74aa-48d6-8106-85a414e807f7.png)  
-이 논문에서 얻을 수 있는 하나의 교훈같은 것인데, 기존의 우리가 알고 있던 DIT 는 DIF 와 대칭적인 형태였던 것을 마치 DIF 와 동일해 보이는 형태로 쓰고 있는 것이다. 이는 사실, DIF 이든 DIT 이든 STAGE 1 에서는 0 번과 8 번이 만나야 하기 때문에 기존의 DIT chart 에서는 입력쪽을 bit reverse 시켰던 것인데, DIF 처럼 그려두고 0 과 8 을 묶어도 전혀 문제가 되지 않는다. Twiddle factor 가 표시되는 위치만 변하게 되는 것이다. 이는 논문에서는 특별히 언급하고 있지 않지만 꽤나 괜찮은 접근이라 생각되어 따로 언급하도록 한다. </br>
+이 논문에서 얻을 수 있는 하나의 교훈같은 것인데, 기존의 우리가 알고 있던 DIT 는 DIF 와 대칭적인 형태였던 것을 마치 DIF 와 동일해 보이는 형태로 쓰고 있는 것이다. 이는 사실, DIF 이든 DIT 이든 STAGE 1 에서는 0 번과 8 번이 만나야 하기 때문에 기존의 DIT chart 에서는 입력쪽을 bit reverse 시켰던 것인데, DIF 처럼 그려두고 0 과 8 을 묶어도 전혀 문제가 되지 않는다. Twiddle factor 가 표시되는 위치만 변하게 되는 것이다. 이는 논문에서는 특별히 언급하고 있지 않지만 꽤나 괜찮은 접근이라 생각되어 따로 언급하도록 한다. <br/>
 하나 더 언급되는 것이 있는데, Appendix 의 bit-reverse 회로의 대체에 대한 언급이다. bit-reverse 를 언급하고 있는데 다소 의아한 부분이다. 애초에 논문에서 완성된 flow chart 는 real value path 와 imaginary value path 가 나뉘어 출력되기 때문에 bit-reverse 는 깨지게 된다. 아무래도, Appendix 로 뺀 것은 이 때문으로 보이는데, imaginary path 를 따로 두기 전 출력의 절반만 선택해서 잘라낸 flow chart 를 기준으로 생각하면 문제가 되지 않는다.  
 ![image](https://user-images.githubusercontent.com/120978778/212954603-b651315e-0254-400b-b961-9736c92261ad.png)  
 이는 32-point 의 예시이다. 일단, OUTPUT FREQUENCIES 에서 16을 넘는 숫자들은 모두 16을 빼서 OUTPUT ORDER 를 0 부터 16 까지의 숫자들로 고려한다. 그 다음 표시된 박스와 화살표를 따라가면 출력 결과가 bit-reverse 된 형태로 나오게 된다. 이를 다시 표현한 것이 다음 그림이다.  
