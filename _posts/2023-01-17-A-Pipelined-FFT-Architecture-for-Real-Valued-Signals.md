@@ -8,7 +8,7 @@ excerpt_separator: <!--more-->
 ---
 기존의 FFT Architecture 에 대한 연구는 complex fourier fast transform (CFFT) 에 대하여 주로 이루어 졌다. `Phari` 교수의 연구진은 실제로 FFT 에 사용되는 입력이 대부분 Real Value 라는데 주목하여 RFFT 의 flow chart 를 제안하였으며, Pipelined RFFT Architecture 와 In-place RFFT Architecture 를 모두 제안하였다. 이번 논문은 Pipelined RFFT Architecture 를 다루고 있으며, 논문의 핵심 쟁점인 `Conjugate symmetry`, `RFFT flow chart`, `Pipelined RFFT Architecture` 에 대하여 정리하고자 한다. <!--more-->  
 
-# 논문링크
+# Link
 https://ieeexplore-ieee-org-ssl.webgate.khu.ac.kr/document/4799153
 
 # Conjugate Symmetry
@@ -44,10 +44,10 @@ stage 2 와 stage 3 사이의 Shuffling 은 다음과 같이 일어난다.
 ![image](https://user-images.githubusercontent.com/120978778/212941469-56f06192-88c1-431c-ad34-deac2958534a.png)  
 위 그림은 전체적인 flow 를 만족시키기 위해 직접 그려본 것인데, 출력을 보면 0, 1, 2, 3, 4, 5, 6, 7 은 순서대로 출력이 되지만 8, 9, 12, 13 그리고 10, 11, 14, 15 가 출력되어 순서대로 출력되지 않는 것을 알 수 있다. 이 논문에서 SWITCH 의 동작 조건을 특별히 언급하고 있지 않기 때문에 임의로 조건을 달아 flow 를 만족시킬 수 있도록 했는데, path 상 가장 상단 라인과 가장 하단 라인은 SWITCH 의 영향을 받지 않기 때문에 8, 9, 12, 13 그리고 10, 11, 14, 15 가 출력되는 것은 여기서 임의로 단 조건이 틀리지 않음을 알려준다. 논문에서는 모두 순서대로 출력된다고 언급하고 있는데 실수가 있었던 것으로 보인다. 이를 해결하기 위해서 하단의 마지막 Shuffling structure 앞에 SWITCH 를 달아 10, 11 과 12, 13 을 SWITCHING 시키면 이 문제를 해결할 수 있다.  
 
-# 한계점
+# Limitation
 사실 이 논문은 꽤나 많은 문제점이 존재한다. 앞서 언급하였지만 R2 와 ROTATOR 의 세부 구조를 제안하고 있지 않다. 그러나, 이후에 제안된 논문들을 바탕으로 선택적으로 동작함을 알 수 있고, 그에 따라 해석하면 동작을 이해할 수 있었다. 구조가 제안된 Shuffling structure 또한 selection 신호의 조건이 언급되지 않았다. 전반적인 Control 조건이 제대로 기술되지 않은 것이다. 또한, RFFT flow chart 의 경우 중간을 기준으로 비대칭적인 구조를 가지고 있기 떄문에 single path 로 architecture 를 제안하는데 어려움이 있었던 것으로 보인다. 물론, multi path 인지 single path 인지는 area 와 performance 중에서 우선이 되는 기준에 맞추어 선택하는 것이지만 현재의 flow chart 는 single path 를 선택할 수 있는 방법이 제안되지 않은 것을 알 수 있다. 지금까지 언급한 부분들은 이후의 후속 연구들에서 전반적으로 해결되었다. 그러나, 다음의 문제는 꽤나 치명적이다. 결국, 이 구조의 선택에 제약 사항이 되는데, Imaginary path 를 따로 두면서 CFFT 일 때는 DIF 는 출력 쪽이 DIT 는 입력 쪽이 bit reverse 되었던 패턴이 사라지게 되었다. 문제는 이 출력을 어떤 기준으로 읽어서 처리할 지가 되는데, 이는 온전히 알고리즘으로 정리하기가 매우 어려워 보인다. 예를 들어, X[3] 이 필요하다면 우리는 X[13] 을 선택했기 때문에 R13 과 I13 을 꺼내야 한다. 이때, R13 은 13번 I13 은 15번이다. R과 I가 존재하기 때문에 한 번에 2개의 데이터씩 꺼내는 것이 합리적이라 생각되지만 애석하게도 X[0] 과 X[N/2] 는 real value 만 갖기 때문에 최소 한 번은 동시에 3개의 데이터를 꺼내야 한다. 이 출력을 꺼내는 기준을 일반화할 수 있는 방법이 현재까지는 제시되지 않았다. 아무래도, RFFT Architecture 의 출력을 순서대로 일단 메모리에 저장해 두고 Read 조건을 만들어 메모리에서 데이터를 순서대로 꺼내 필요한 곳으로 전달해야 할 것인데, 이 쪽의 오버헤드가 너무 크고 일반화할 방법이 제시되지 않았다. 이는 이후의 논문들에서도 해결되지 않은 문제점인데, 이를 바탕으로 포인트 수가 매우 많아지면 뒤 쪽의 오버헤드가 매우 커지기 때문에 실제로 이를 선택하는 것은 매우 어려운 일이 된다. 마지막으로, ROTATOR 에 사용되는 Twiddle factor 의 exponent 생성 조건은 거의 대부분의 Pipelined Architecture 에서는 언급하고 있지 않다. Pipelined Architecture 가 real time 에 강한 것은 맞지만 결국 point 수가 커지면서 stage 가 늘어나 area 가 크게 증가하고, RFFT 의 경우 출력의 read pattern 과 exponent generation 조건이 일반화 되지 않는 한 사용이 꺼려지는 것이 사실이다.  
 
-# 번외
+# Appendix
 이 논문에서는 특별히 언급하고 있진 않지만 다음과 같은 DIT RFFT flow chart 를 보여주고 있다.  
 ![image](https://user-images.githubusercontent.com/120978778/212948549-9e167567-74aa-48d6-8106-85a414e807f7.png)  
 이 논문에서 얻을 수 있는 하나의 교훈같은 것인데, 기존의 우리가 알고 있던 DIT 는 DIF 와 대칭적인 형태였던 것을 마치 DIF 와 동일해 보이는 형태로 쓰고 있는 것이다. 이는 사실, DIF 이든 DIT 이든 STAGE 1 에서는 0 번과 8 번이 만나야 하기 때문에 기존의 DIT chart 에서는 입력쪽을 bit reverse 시켰던 것인데, DIF 처럼 그려두고 0 과 8 을 묶어도 전혀 문제가 되지 않는다. Twiddle factor 가 표시되는 위치만 변하게 되는 것이다. 이는 논문에서는 특별히 언급하고 있지 않지만 꽤나 괜찮은 접근이라 생각되어 따로 언급하도록 한다. <br/>
