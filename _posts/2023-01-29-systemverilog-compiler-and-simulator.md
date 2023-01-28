@@ -125,22 +125,29 @@ xelab --debug wave tb
 xsim -g tb
 ```
 이렇게 입력하면 다음과 같은 화면이 뜰 것이다.  
+
 ![image](https://user-images.githubusercontent.com/120978778/215289481-d5252df7-7932-48b6-9451-966fd0541a7e.png)  
+
 좌측 상단의 File - Simulation Waveform - New Configuration 을 누르자.  
 ![image](https://user-images.githubusercontent.com/120978778/215290055-db9a368b-560d-44b9-a85c-7e9eb1e0273c.png)  
+
 그 다음 Objects 의 모든 신호를 Add to Wave Window 해주도록 하자.  
 ![image](https://user-images.githubusercontent.com/120978778/215290146-c3a29b56-f638-4aa1-b3a8-50019547cf5e.png)  
+
 이제 F3 을 눌러 Run 시키도록 하자.  
 ![image](https://user-images.githubusercontent.com/120978778/215290184-12f963b0-1c88-43ef-a045-80001c76001e.png)  
+
 최종 결과물  
 
 ### Clean
 하나를 깜박했다. 터미널에서 명령어를 치면 뭔가 이상한 파일들이 많이 만들어 진다. 뭐 원래 compile 을 하면 그 부산물들이 만들어지기 마련인데, xvlog, xelab, xsim 을 하면서 뭐가 정말 많이 만들어진다. 필자의 경우 다음과 같은 것들이 만들어 졌다.  
 
 ![image](https://user-images.githubusercontent.com/120978778/215290423-91f81cc0-5304-45cc-943f-25a12787a4c3.png)  
+
 뭔가 굉장히 지저분한데, 리눅스를 쓸 때는 아예 clean 파일을 만들어서 밀어 버리지만.. Powershell 을 쓸 때는 clean 파일을 어떻게 만드는지도 모르겠다. 그래서 명령어를 쳐야 하는데 다음과 같이 입력하도록 하자.  
 ```
 rm *xsim*, *webtalk*, *wdb*, *xelab*, *xvlog*, *Xil*
 ```
 리눅스와 다르게 중간에 콤마(,) 를 한 번씩 찍어줘야 한다. 결과물은 다음과 같다.  
+
 ![image](https://user-images.githubusercontent.com/120978778/215290530-961e2afc-e738-4ef4-b29e-5b4817fccf47.png)  
