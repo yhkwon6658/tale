@@ -136,13 +136,13 @@ xsim -g tb
 ![image](https://user-images.githubusercontent.com/120978778/215290146-c3a29b56-f638-4aa1-b3a8-50019547cf5e.png)  
 
 이제 F3 을 눌러 Run 시키도록 하자.  
-  
+
 ![image](https://user-images.githubusercontent.com/120978778/215290184-12f963b0-1c88-43ef-a045-80001c76001e.png)  
 
 최종 결과물  
 
 ## Clean
-하나를 깜박했다. 터미널에서 명령어를 치면 뭔가 이상한 파일들이 많이 만들어 진다. 뭐 원래 compile 을 하면 그 부산물들이 만들어지기 마련인데, xvlog, xelab, xsim 을 하면서 뭐가 정말 많이 만들어진다. 필자의 경우 다음과 같은 것들이 만들어 졌다.  
+터미널에서 명령어를 치면 뭔가 이상한 파일들이 많이 만들어 진다. 뭐 원래 compile 을 하면 그 부산물들이 만들어지기 마련인데, xvlog, xelab, xsim 을 하면서 뭐가 정말 많이 만들어진다. 필자의 경우 다음과 같은 것들이 만들어 졌다.  
 
 ![image](https://user-images.githubusercontent.com/120978778/215290423-91f81cc0-5304-45cc-943f-25a12787a4c3.png)  
 
