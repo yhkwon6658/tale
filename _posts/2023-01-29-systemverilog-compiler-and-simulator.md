@@ -130,9 +130,11 @@ xsim -g tb
 ![image](https://user-images.githubusercontent.com/120978778/215289481-d5252df7-7932-48b6-9451-966fd0541a7e.png)  
 
 좌측 상단의 File - Simulation Waveform - New Configuration 을 누르자.  
+
 ![image](https://user-images.githubusercontent.com/120978778/215290055-db9a368b-560d-44b9-a85c-7e9eb1e0273c.png)  
 
 그 다음 Objects 의 모든 신호를 Add to Wave Window 해주도록 하자.  
+
 ![image](https://user-images.githubusercontent.com/120978778/215290146-c3a29b56-f638-4aa1-b3a8-50019547cf5e.png)  
 
 이제 F3 을 눌러 Run 시키도록 하자.  
