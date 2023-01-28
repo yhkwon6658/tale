@@ -16,11 +16,13 @@ excerpt_separator: <!--more-->
 # 시작
 1. Vivado 설치  
 [링크](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/archive.html) 로 이동하여 Web installer 로 설치하도록 하자. Vivado 는 2022.2 까지 나왔지만 각종 버그 등의 문제도 있고, 최신 버전에서 툴에 몇가지 변화가 있었는데 그게 마음에 안 들어서 필자는 2020.2 버전을 사용하고 있다.  
+<br/>
 2. 환경변수  
 윈도우 버튼 - 시스템 환경 변수 편집 - 고급 - 환경 변수  
 사용자 변수의 Path 편집 - 새로 만들기 - C:\Xilinx\Vivado\2020.2\bin - 확인  
-만약, 기본 경로가 아니라면 <설치경로>\Vivado\2020.2\bin 을 넣으면 된다.  
-3. 터미널 명령어 활용하기
+`만약, 기본 경로가 아니라면 <설치경로>\Vivado\2020.2\bin 을 넣으면 된다.`  
+<br/>  
+3. 터미널 명령어 활용하기  
 vivado 는 gui 를 켜서 컴파일과 시뮬레이션을 하기에는 너무 많은 시간이 걸린다. 최대한 작업을 덜 귀찮게(?) 하기 위해 터미널 명령어를 잘 활용하자. 필자는 text editor 로 `vscode` 를 사용하고 있다.
 
 ### `mem.sv`
