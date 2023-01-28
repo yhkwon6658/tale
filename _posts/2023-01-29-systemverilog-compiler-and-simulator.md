@@ -9,6 +9,7 @@ excerpt_separator: <!--more-->
 이제껏 HDL 로는 verilog 만을 사용해 오다가 HDL 과 HVL 기능을 모두 가지고 있는 sytem verilog 로 넘어 오게 되었다. 그런데, system verilog 의 경우 compile 과 simulation 을 진행할 수 있는 tool 에 대한 소개가 별로 없는 것 같아 포스팅을 작성한다.  
 <!--more-->
 
+---
 # 소개
 먼저, 여기서 말하는 complie 은 cell, power, timing, technology 같은 constraint 이 전혀없는 elaboration 을 위한 것이라고 보면 좋을 것 같다. 여러 삽질을 한 결과 verilog 와 icarus 의 포지션으로 사용할 수 있는 tool 은 vivado 밖에 없다고 결론 내렸다. 몇몇 이유가 있는데 일단 vivado 는 대부분의 작업자들의 local에 깔려 있다. 그리고, modelsim 이 system verilog 에서 몇가지 제약이 있다고 한다. 또한, icarus 는 현재까지는 system veirlog 를 사용하는 것이 거의 불가능하다. [링크](https://blog.naver.com/doksg/221979883906) 에 `verilator` 라는 툴을 이용해 system verilog 를 컴파일 할 수 있다고는 하는데 그 다음 튜토리얼 글을 읽어보니 배보다 배꼽이 더 큰 것처럼 보인다. 아무튼 vivado 로 compile 과 simulation 을 하기 위해 다음 과정을 따르도록 하자.
 
