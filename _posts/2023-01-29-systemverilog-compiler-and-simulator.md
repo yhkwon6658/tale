@@ -6,7 +6,7 @@ tags: "tools"
 comments: true
 excerpt_separator: <!--more-->
 ---
-이제껏 HDL 로는 verilog 만을 사용해 오다가 HDL 과 HVL 기능을 모두 가지고 있는 sytem verilog 로 넘어 오게 되었다. 그런데, system verilog 의 경우 검증용 문법의 복잡도는 논외로 하더라도 compiler 과 simulation 을 진행할 수 있는 tool 에 대한 소개는 별로 없는 것 같다.
+이제껏 HDL 로는 verilog 만을 사용해 오다가 HDL 과 HVL 기능을 모두 가지고 있는 sytem verilog 로 넘어 오게 되었다. 그런데, system verilog 의 경우 compile 과 simulation 을 진행할 수 있는 tool 에 대한 소개가 별로 없는 것 같아 포스팅을 작성한다.
 <!--more-->
 먼저, 여기서 말하는 complie 은 cell, power, timing, technology 같은 contraint 이 전혀없는 elaboration 을 위한 것이라고 보면 좋을 것 같다. 여러 삽질을 한 결과 verilog 와 icarus 의 포지션으로 사용할 수 있는 tool 은 vivado 밖에 없다고 결론 내렸다. 몇몇 이유가 있는데 일단 vivado 는 대부분의 작업자들은 깔려 있다. 그리고, modelsim 이 system verilog 에서 몇가지 제약이 있다고 한다. 또한, icarus 는 사실상 system veirlog 를 사용하는 것이 거의 불가능하다. [링크](https://blog.naver.com/doksg/221979883906) 에 `verilator` 라는 툴을 이용해 system verilog 를 컴파일 할 수 있다고는 하는데 그 다음 튜토리얼 글을 읽어보니 배보다 배꼽이 더 큰 것처럼 보인다. 아무튼 vivado 로 compile 과 simulation 을 하기 위해 다음 과정을 따르도록 하자.  
 
@@ -19,7 +19,7 @@ excerpt_separator: <!--more-->
 사용자 변수의 Path 편집 - 새로 만들기 - C:\Xilinx\Vivado\2020.2\bin - 확인  
 만약, 기본 경로가 아니라면 <설치경로>\Vivado\2020.2\bin 을 넣으면 된다.  
 3. 터미널 명령어 활용하기
-vivado 는 gui 를 켜서 컴파일과 시뮬레이션을 하기에는 너무 많은 시간이 걸린다. 최대한 작업을 덜 귀찮게(?) 하기 위해 터미널 명령어를 잘 활용하자. 필자는 text editor 로 `vscode` 를 사용하고 있다. 아마 많은 사람들이 vscode 로 넘어 왔을 것 같아서 vscode 를 기준으로 작성하도록 하겠다. 
+vivado 는 gui 를 켜서 컴파일과 시뮬레이션을 하기에는 너무 많은 시간이 걸린다. 최대한 작업을 덜 귀찮게(?) 하기 위해 터미널 명령어를 잘 활용하자. 필자는 text editor 로 `vscode` 를 사용하고 있다.
 
 ### `mem.sv`
 ```verilog
@@ -104,7 +104,7 @@ end
 
 endmodule
 ```
-일단 위의 두 코드가 있다고 가정하도록 하자. 현재의 코드는 터미널에 모니터만 하는 용도로 만들어졌다. testbench 를 작성하다 보면 나의 경우 주로 waveform 을 보기 보다는 hdl 로 module 을 구현하기 전에 modeling 한 algorithm 의 출력과 작성한 module 의 output 을 비교하여 error 가 있는지만을 모니터한다. systemverilog 를 선택한 건 첫번째로 random signal 을 입력으로 줄 수 있다는 점, 두번째는 내가 굳이 modeling 할 때, 포인터를 사용하지만 않으면 C/C++ 로 modeling 하던 것과 동일하게 systemverilog 로 짤 수 있어 여러모로 작업의 단계를 줄일 수 있다고 생각했기 때문이다. 어쨌든 다음 두 가지 케이스에 대한 명령어만 알면 된다.  
+테스트를 위해서 만든 코드다. 터미널에 모니터만 하는 용도로 만들어졌다. testbench 를 작성하다 보면 나의 경우 주로 waveform 을 보기 보다는 hdl 로 module 을 구현하기 전에 modeling 한 algorithm 의 출력과 작성한 module 의 output 을 비교하여 error 가 있는지만을 모니터한다. systemverilog 를 선택한 건 첫번째로 random signal 을 입력으로 줄 수 있다는 점, 두번째는 내가 굳이 modeling 할 때, 포인터를 사용하지만 않으면 C/C++ 로 modeling 하던 것과 동일하게 systemverilog 로 짤 수 있어 여러모로 작업의 단계를 줄일 수 있다고 생각했기 때문이다. 어쨌든 다음 두 가지 케이스에 대한 명령어만 알면 된다.  
 
 ### 커맨드 창에 모니터만 하는 경우
 Ctrl + ` 를 눌러 terminal 을 키자. Window Powershell 이나 cmd 창을 열면 될 것이다. 필자는 Widnow Powershell 이 기본으로 되어 있어서 그냥 Powershell 에다가 입력한다.  
