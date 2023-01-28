@@ -136,6 +136,7 @@ xsim -g tb
 ![image](https://user-images.githubusercontent.com/120978778/215290146-c3a29b56-f638-4aa1-b3a8-50019547cf5e.png)  
 
 이제 F3 을 눌러 Run 시키도록 하자.  
+  
 ![image](https://user-images.githubusercontent.com/120978778/215290184-12f963b0-1c88-43ef-a045-80001c76001e.png)  
 
 최종 결과물  
