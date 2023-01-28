@@ -110,7 +110,7 @@ endmodule
 ```
 테스트를 위해서 만든 코드다. 터미널에 모니터만 하는 용도로 만들어졌다. testbench 를 작성하다 보면 나의 경우 주로 waveform 을 보기 보다는 hdl 로 module 을 구현하기 전에 modeling 한 algorithm 의 출력과 작성한 module 의 output 을 비교하여 error 가 있는지만을 모니터한다. systemverilog 를 선택한 건 첫번째로 random signal 을 입력으로 줄 수 있다는 점, 두번째는 내가 굳이 modeling 할 때, 포인터를 사용하지만 않으면 C/C++ 로 modeling 하던 것과 동일하게 systemverilog 로 짤 수 있어 여러모로 작업의 단계를 줄일 수 있다고 생각했기 때문이다. 어쨌든 다음 두 가지 케이스에 대한 명령어만 알면 된다.  
 
-### 커맨드 창에 모니터만 하는 경우
+## 1. 커맨드 창에 모니터만 하는 경우
 Ctrl + ` 를 눌러 terminal 을 키자. Window Powershell 이나 cmd 창을 열면 될 것이다. 필자는 Widnow Powershell 이 기본으로 되어 있어서 그냥 Powershell 에다가 입력한다.  
 ```
 xvlog -sv mem_tb.sv
@@ -118,7 +118,7 @@ xelab -R tb
 ```
 순서대로 입력하면 된다. mem_tb.sv 에서 이미 mem_sv 를 `include 했기 때문에 xvlog -sv mem_tb.sv mem_v 를 할 필요가 없다. xelab 에서는 top module 의 이름을 지정하면 된다.  
 
-### Waveform 보는 경우
+## 2. Waveform 보는 경우
 ```
 xvlog -sv mem_tb.sv
 xelab --debug wave tb
@@ -139,7 +139,7 @@ xsim -g tb
 
 최종 결과물  
 
-### Clean
+## Clean
 하나를 깜박했다. 터미널에서 명령어를 치면 뭔가 이상한 파일들이 많이 만들어 진다. 뭐 원래 compile 을 하면 그 부산물들이 만들어지기 마련인데, xvlog, xelab, xsim 을 하면서 뭐가 정말 많이 만들어진다. 필자의 경우 다음과 같은 것들이 만들어 졌다.  
 
 ![image](https://user-images.githubusercontent.com/120978778/215290423-91f81cc0-5304-45cc-943f-25a12787a4c3.png)  
