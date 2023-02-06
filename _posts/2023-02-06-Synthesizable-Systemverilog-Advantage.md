@@ -576,7 +576,7 @@ package 와 interface 는 module 이 아니기 때문에 Libraries 에 할당된
 Implementation 후 본 schematic 이다. FPGA 위에서 동작 검증까지 정상적으로 마무리하였다.  
 
 # generate
-사실, generate 은 이미 Verilog-2005 에서도 충분히 활용될 수 있었다. 설계의 자동화를 목표로 할 때, 효과적으로 사용될 수 있다. Verilog 로 다음과 같은 코드를 구현했다고 생각해보자.  
+사실, generate 은 이미 Verilog-2005 에서도 충분히 활용될 수 있었다. 설계의 자동화를 목표로 할 때, 효과적으로 사용될 수 있다. SystemVerilog 로 다음과 같은 코드를 구현했다고 생각해보자.  
 
 `test6.sv`
 ```verilog
