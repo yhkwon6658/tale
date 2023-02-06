@@ -476,7 +476,7 @@ exit
 SystemVerilog 에서는 C 와 반대로 default 가 static 이기 때문에 f_add 가 호출될 때마다 i 가 1로 초기화 되지 않고 1씩 계속 증가한 것을 알 수 있다. 여기서 흥미로운 것은 always_comb 라는 조합회로에 f_add 를 썼기 때문에 필자는 무한 increment 같은 일이 벌어질 줄 알았지만 xvlog 는 외부에서 호출될 때마다 하나씩 증가하도록 컴파일 하였다. 다만, 이게 DC 에서도 똑같이 컴파일 될 거라는 보장은 없다. 어차피 조합회로를 모델링 하는 것이 목적이라면 애초에 static 으로 선언할 이유도 없긴 하다. `항상 함수는 void 로 내부의 변수는 automatic 으로 선언하도록 하자.`  
 
 # Interface
-사실 RTL coding 에서는 Package 와 Interface 는 큰 차이를 보이지 않는다. 다만, Package 는 보통 Shared parameter 나 port list 등을 정의하기 위해 사용한다. Interface 도 비슷한 역할을 할 수 있지만 Package 와 역할을 분리하여 function 들을 선언하기 위해 사용하고 있다. 앞서 사용한 function 예제를 사용하려고 한다. interface 에 사용되는 function 은 automatic 이어야 한다. 그러나, void function 을 선언할 경우 function 이 automatic 으로 선언할 수 없었다. 따라서 function 내부의 변수가 사용될 경우 automatic 으로 선언해 주어야 한다는 것을 잊지 않도록 하자.  
+사실 RTL coding 에서는 Package 와 Interface 는 큰 차이를 보이지 않는다. 다만, Package 는 보통 Shared parameter 나 port list 등을 정의하기 위해 사용한다. Interface 도 비슷한 역할을 할 수 있지만 Package 와 역할을 분리하여 function 들을 선언하기 위해 사용하고 있다. 앞서 사용한 function 예제를 사용하려고 한다. interface 에 사용되는 function 은 automatic 이어야 한다. 그러나, void function 을 선언할 경우 function 을 automatic 으로 선언할 수 없었다. 따라서 function 내부의 변수가 사용될 경우 automatic 으로 선언해 주어야 한다는 것을 잊지 않도록 하자.  
 
 `package.sv`
 ```verilog
