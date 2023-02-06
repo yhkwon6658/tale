@@ -114,7 +114,7 @@ package TABLE;
     parameter L = 32;
 
     typedef logic [N-1:0] bus_t;
-    typedef logic [1:0] {IDLE, ADDR, CAL, DONE} state_t;
+    typedef enum logic [1:0] {IDLE, ADDR, CAL, DONE} state_t;
 
     typedef struct {
         logic [L-1:0] signal_0;
