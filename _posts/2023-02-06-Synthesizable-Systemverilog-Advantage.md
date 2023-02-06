@@ -6,7 +6,7 @@ tags: "tools"
 comments: true
 excerpt_separator: <!--more-->
 ---
-SystemVerilog 는 흔히 Verification 을 위한 언어로 취급되어 오고 있지만, [링크](https://sutherland-hdl.com/papers/2013-SNUG-SV_Synthesizable-SystemVerilog_paper.pdf) 에 따르면 합성에서도 여러가지 이점을 가지고 있다. Verilog 는 2005 년을 기점으로 새로운 IEEE 규약이 갱신되고 있지 않다. 즉, 2005 년부터 Verilog 는 SystemVerilog 에 통합되었다고 이해하는 것이 좋다. SystemVerilog 는 Verilog 에 비해 Functional Coding 에 있어 코드의 길이를 크게 줄일 수 있다. 또한, Package 와 Interface 등을 Generate 과 함께 사용하여 설계의 자동화에 큰 기여를 할 수 있다. 이 포스티에서는 설계시 Verilog 에 비해 유리하게 사용될 수 있는 SystemVerilog 의 특징들을 탐구해 보도록 할 것이다. <!--more-->
+SystemVerilog 는 흔히 Verification 을 위한 언어로 취급되어 오고 있지만, [링크](https://sutherland-hdl.com/papers/2013-SNUG-SV_Synthesizable-SystemVerilog_paper.pdf) 에 따르면 합성에서도 여러가지 이점을 가지고 있다. Verilog 는 2005 년을 기점으로 새로운 IEEE 규약이 갱신되고 있지 않다. 즉, 2005 년부터 Verilog 는 SystemVerilog 에 통합되었다고 이해하는 것이 좋다. SystemVerilog 는 Verilog 에 비해 Functional Coding 에 있어 코드의 길이를 크게 줄일 수 있다. 또한, Package 와 Interface 등을 Generate 과 함께 사용하여 설계의 자동화에 큰 기여를 할 수 있다. Verilog 에서는 버그로 판별하던 것들을 에러로 인식하게 함으로써 Synthesis/Simulation 의 차이를 줄이는 것에도 큰 기여를 할 수 있다. 이 포스트에서는 설계시 Verilog 에 비해 유리하게 사용될 수 있는 SystemVerilog 의 특징들을 공부해 보도록 할 것이다. <!--more-->
 
 ---
 이 포스트는 `Sutherland` 님 뿐만 아니라 [Verilog Pro](https://www.verilogpro.com/) 님의 글 들도 많은 도움이 되었으며, 모르는 문법이 등장하면 [Chip verify](https://www.chipverify.com/systemverilog/systemverilog-tutorial) 에서 기술된 간단한 내용도 참고해 보는 것을 추천드립니다. 사실, SystemVerilog 관련 글들은 대부분 verificaiton 에 초점을 맞추고 있다 보니 Synthesis 를 위한 글들은 찾기가 어려울 것입니다. 필자도 위에 언급된 사이트들외에 많은 검색을 해보면서 이 포스트의 내용을 정리하였습니다. SystemVerilog 를 설계에 도입하길 시도하는 누군가에게 도움이 되길 바랍니다.  
