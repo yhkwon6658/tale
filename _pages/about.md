@@ -14,22 +14,23 @@ Hi! I'm a B.S. candidate of KyungHee University's Electronic Enginering Course.
 - Hardware Architecture Design and Implmentation of Neural-Networks, Signal & Image Processing and Communication.
 
 ## Skills
-- Verilog HDL
-- Verilog-AMS (not skillful)
-- SystemVerilog
-- C/C++
-- Qt
-- Python
-- Tensorflow (not skillful)
-- MATLAB
-- Vivado
-- Vitis
-- Vitis-HLS (not skillful)
-- PYNQ
-- Modelsim
-- Oasys RTL (not skillful)
-- Icarus
-- myhdl (not skillful)
+- Verilog HDL  
+- Verilog-AMS (bench warmer)  
+- SystemVerilog  
+- C/C++  
+- Qt  
+- Python  
+- Tensorflow (bench warmer)  
+- MATLAB (bench warmer)  
+- Vivado  
+- Vitis  
+- Vitis-HLS (bench warmer)  
+- PYNQ  
+- Modelsim (bench warmer)  
+- Oasys RTL (bench warmer)    
+- Icarus (bench warmer)  
+- myhdl (bench warmer)  
+- Ubuntu (bench warmer)  
 
 ## Contact
 - e-mail : yhkwon6658@gmail.com
