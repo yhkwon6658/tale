@@ -33,6 +33,6 @@ Hi! I'm a B.S. candidate of KyungHee University's Electronic Enginering Course.
 - Ubuntu (bench warmer)  
 
 ## Contact
-- e-mail : yhkwon6658@gmail.com
+- e-mail : yonghwankwon.6658@gmail.com
 - instagram : <https://www.instagram.com/yhwan_0/>
 - github : <https://github.com/yhkwon6658>
