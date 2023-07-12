@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Window System Verilog Compiler2 - modelsim/questasim"
+title: "Window 에서 사용 가능한 System Verilog 컴파일러와 시뮬레이터2"
 author: "Yonghwan Kwon"
 tags: "tools"
 comments: true
