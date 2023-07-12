@@ -58,7 +58,7 @@ questasim이 정상적으로 설치가 되었다면 일단 실행해 보도록 �
 
 이제 좌측 상단의 File에서 Change Directory를 누른 후 테스트할 코드가 있는 디렉토리로 이동하자.  
 
-여기서 하단의 Transcript에 다음과 같은 명령어를 순서대로 치도록 하자.
+그 다음, 하단의 Transcript에 다음과 같은 명령어를 순서대로 치도록 하자.
 
 ```
 vlib work
