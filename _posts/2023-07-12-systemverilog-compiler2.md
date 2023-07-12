@@ -15,7 +15,7 @@ modelsim은 Mentor Graphics가 Simense로 상호를 변경하면서 questasim으
 ---
 # test code
 ### `add4.sv"`
-```systemverilog
+```verilog
 module add4 (
     input [7:0] din [0:3],
     output [7:0] dout
@@ -26,7 +26,7 @@ assign dout = din[0] + din[1] + din[2] + din[3];
 endmodule
 ```
 ### `tb.sv`
-```systemverilog
+```verilog
 `timescale 1ps/1ps
 
 module tb();
