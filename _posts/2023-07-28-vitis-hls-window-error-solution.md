@@ -6,7 +6,7 @@ tags: "tools"
 comments: true
 excerpt_separator: <!--more-->
 ---
-Vitis HLS Window Version의 경우 ERROR: [IMPL 213-28]를 Tool 공부를 시작하자마자 보게될 것이다. 필자의 경우 Vitis HLS를 처음 시작할 때, Linux를 사용했기 때문에 위와 같은 Error코드의 존재를 몰랐었다. 이 문제의 해결법을 소개한다. <!--more-->
+Vitis HLS Window Version의 경우 ERROR: [IMPL 213-28]를 Tool 공부를 시작하자마자 보게 될 것이다. <!--more-->
 
 ---
 # 잘못된 해결방법
