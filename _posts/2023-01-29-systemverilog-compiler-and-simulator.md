@@ -1,11 +1,13 @@
 ---
-layout: 
+layout: posts
 title: "Window 에서 사용 가능한 System Verilog 컴파일러와 시뮬레이터"
 author: "Yonghwan Kwon"
 tags: "tools"
 comments: true
 excerpt_separator: <!--more-->
 ---
+이거 왜 삭제가 안 되냐
+
 이제껏 HDL 로는 verilog 만을 사용해 오다가 HDL 과 HVL 기능을 모두 가지고 있는 sytem verilog 로 넘어 오게 되었다. 그런데, system verilog 의 경우 compile 과 simulation 을 진행할 수 있는 tool 에 대한 소개가 별로 없는 것 같아 포스팅을 작성한다.  
 <!--more-->
 
