@@ -5,34 +5,25 @@ author: "Yonghwan Kwon"
 permalink: /about/
 ---
 
-Hi! I'm a B.S. candidate of KyungHee University's Electronic Enginering Course.
+# Yonghwan Kwon
 
-## Current Research
-- New FFT Architecture design that could be used in space.
+## 🎓 Education
+- **B.S. in Electrical Engineering**, Kyung Hee University (Feb, 2024)
+- **M.S. Student**, Kyung Hee University
 
-## Interests
-- Hardware Architecture Design and Implmentation of Neural-Networks, Signal & Image Processing and Communication.
+## 🛠 Skills
+- **Programming**: GUI programming with Python
+- **FPGA Development**: Vivado, Quartus
+- **RTL Verification**: VCS, Verdi
+- **RTL Synthesis**: Design Compiler
+- **Physical Implementation**: ICC
+- **Physical Verification**: StarRC, PrimeTime, Calibre
+- **IP Library Design**: Virtuoso, Abstract Generator, PrimeLib, Hspice, Milkyway
 
-## Skills
-- Verilog HDL  
-- Verilog-AMS (bench warmer)  
-- SystemVerilog  
-- C/C++  
-- Qt  
-- Python  
-- Tensorflow (bench warmer)  
-- MATLAB (bench warmer)  
-- Vivado  
-- Vitis  
-- Vitis-HLS (bench warmer)  
-- PYNQ  
-- Modelsim (bench warmer)  
-- Oasys RTL (bench warmer)    
-- Icarus (bench warmer)  
-- myhdl (bench warmer)  
-- Ubuntu (bench warmer)  
+## 📄 Papers
+_(To be updated)_
 
-## Contact
-- e-mail : yonghwankwon.6658@gmail.com
-- instagram : <https://www.instagram.com/yhwan_0/>
-- github : <https://github.com/yhkwon6658>
+## 📬 Contact
+- ✉️ Email: [yonghwankwon.6658@gmail.com](mailto:yonghwankwon.6658@gmail.com)
+- 📷 Instagram: [@yhwan_0](https://www.instagram.com/yhwan_0/)
+- 💻 GitHub: [yhkwon6658](https://github.com/yhkwon6658)
