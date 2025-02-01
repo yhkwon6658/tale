@@ -8,37 +8,31 @@ permalink: /about/
 Hi! I'm a B.S. candidate of KyungHee University's Electronic Enginering Course.
 
 ## Current Research
-- Space-21 Project : New FFT Architecture design that could be used in space
+- New FFT Architecture design that could be used in space.
 
 ## Interests
-- Hardware Implmentation of Neural-Networks
-- Signal and Image-Processings
+- Hardware Architecture Design and Implmentation of Neural-Networks, Signal & Image Processing and Communication.
 
-## Language Experience
-- Verilog HDL
-- Verilog-AMS
-- C/C++
-- Arduino programming language
-- Qt
-- Python
-- Pytorch
-- Tensorflow
-- MATLAB
-
-## HDL SDK Experience
-- Vivado and Vitis
-- Quartus and Modelsim
-- Oasys RTL
-- Icarus
-- PYNQ
-
-## FPGA Experience
-- DE2 and DE2-115
-- ZCU-104
-- VCU-108
-- PYNQ-Z2
+## Skills
+- Verilog HDL  
+- Verilog-AMS (bench warmer)  
+- SystemVerilog  
+- C/C++  
+- Qt  
+- Python  
+- Tensorflow (bench warmer)  
+- MATLAB (bench warmer)  
+- Vivado  
+- Vitis  
+- Vitis-HLS (bench warmer)  
+- PYNQ  
+- Modelsim (bench warmer)  
+- Oasys RTL (bench warmer)    
+- Icarus (bench warmer)  
+- myhdl (bench warmer)  
+- Ubuntu (bench warmer)  
 
 ## Contact
-- e-mail : yhkwon6658@gmail.com
+- e-mail : yonghwankwon.6658@gmail.com
 - instagram : <https://www.instagram.com/yhwan_0/>
 - github : <https://github.com/yhkwon6658>
