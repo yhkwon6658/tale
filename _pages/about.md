@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "🧑‍💻 About Me"
+title: "🧑‍💻 About Me 😊👓"
 author: "Yonghwan Kwon"
 permalink: /about/
 ---
@@ -14,7 +14,7 @@ permalink: /about/
 - **FPGA Development**: Vivado, Quartus
 - **RTL Verification**: VCS, Verdi
 - **RTL Synthesis**: Design Compiler
-- **Physical Implementation**: ICC
+- **Physical Implementation**: IC Compiler
 - **Physical Verification**: StarRC, PrimeTime, Calibre
 - **IP Library Design**: Virtuoso, Abstract Generator, PrimeLib, Hspice, Milkyway
 
