@@ -1,11 +1,9 @@
 ---
 layout: post
-title: "About"
+title: "🧑‍💻 About Me"
 author: "Yonghwan Kwon"
 permalink: /about/
 ---
-
-# Yonghwan Kwon
 
 ## 🎓 Education
 - **B.S. in Electrical Engineering**, Kyung Hee University (Feb, 2024)
