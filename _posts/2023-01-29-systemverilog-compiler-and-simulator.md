@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: 
 title: "Window 에서 사용 가능한 System Verilog 컴파일러와 시뮬레이터"
 author: "Yonghwan Kwon"
 tags: "tools"
