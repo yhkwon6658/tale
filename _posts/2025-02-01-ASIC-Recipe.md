@@ -64,7 +64,7 @@ ASIC이라고 하면 많은 분들이 **합성(Synthesis)**이나 **PnR(Place & 
 따라서, **CentOS의 기본적인 터미널 명령어**, **Bash 스크립트 작성법**, **Makefile 작성법**  
 등에 대해 사전에 익히거나, 툴 사용법을 배우는 과정에서 틈틈이 공부해 두는 것이 필요합니다.  
 
-<div style="text-align: left;">
+<div style="text-align: center;">
   <img src="https://github.com/user-attachments/assets/31a6caf3-5123-4b4c-a6ab-5a480e9e20d6" 
        alt="System Diagram" height="300">
   <p><em>그림 1. 원격 시스템 구조도</em></p>
