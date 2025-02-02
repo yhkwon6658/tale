@@ -87,8 +87,3 @@ body.dark-mode code span {
   color: #ffcc00; /* 강조된 텍스트 색상 (예: 키워드) */
 }
 
-/* 추가: 코드 블록 그림자 제거 */
-pre,
-code {
-  box-shadow: none !important; /* 그림자 제거 */
-}
