@@ -61,25 +61,44 @@ permalink: /gallery/
   transform: scale(1.1);
 }
 
-/* 오버레이 정보 */
+/* 오버레이 텍스트 스타일 */
 .info-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7); /* 반투명 검정 배경 */
+  background: rgba(0, 0, 0, 0.7); /* 반투명 배경 */
   color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  opacity: 0; /* 기본적으로 숨김 */
-  transition: opacity 0.3s ease; /* 전환 효과 */
-  padding: 10px;
+  justify-content: center; /* 가운데 정렬 */
+  align-items: center; /* 텍스트 가운데 정렬 */
+  text-align: center; /* 텍스트 가운데 정렬 */
+  padding: 15px;
   box-sizing: border-box;
+  opacity: 0; /* 기본 숨김 */
+  transition: opacity 0.3s ease; /* 부드러운 전환 */
   border-radius: 10px;
+  line-height: 1.5; /* 줄 간격 */
+}
+
+/* 텍스트 스타일 */
+.info-overlay p {
+  margin: 8px 0; /* 문단 간격 */
+  font-size: 16px; /* 기본 텍스트 크기 */
+}
+
+/* 반응형: 모바일 환경 (화면 너비 768px 이하) */
+@media (max-width: 768px) {
+  .info-overlay {
+    padding: 10px; /* 모바일에서 여백 축소 */
+  }
+
+  .info-overlay p {
+    font-size: 12px; /* 텍스트 크기를 더 작게 조정 */
+    line-height: 1.4; /* 줄 간격도 축소 */
+  }
 }
 
 .image-container:hover .info-overlay {
