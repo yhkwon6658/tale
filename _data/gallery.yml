@@ -2,9 +2,16 @@
   description: Low Power FFT Processor
   image: /assets/chip/layout1.png
   technology: 65nm
-  performance: < 1ms
+  type: IC
+  area: 1.276mm²
+  power: N/A
+  performance: 0.03ms
 
 - title: N002-2024-65
-  description: Clock Generator
+  description: 200MHz Clock Generator
   image: /assets/chip/layout2.png
   technology: 65nm
+  type: IP
+  area: N/A
+  power: N/A
+  performance: N/A
