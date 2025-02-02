@@ -62,17 +62,23 @@
     body.dark-mode code {
         background-color: #2e2e2e; /* 어두운 배경 */
         color: #ffffff; /* 밝은 텍스트 */
-        border: none; /* 테두리 제거 */
-        border-radius: 8px; /* 모서리 둥글게 */
+        border: none !important; /* 테두리 완전히 제거 */
+        border-radius: 5px; /* 모서리 둥글게 */
         padding: 10px; /* 내부 여백 */
         font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; /* 코드 글꼴 */
         font-size: 14px; /* 글자 크기 */
+        box-shadow: none !important; /* 그림자 제거 */
     }
 
     /* 일반 모드 코드 블록 스타일 */
     pre,
     code {
-        border: none; /* 테두리 제거 */
+        background-color: #f5f5f5; /* 밝은 배경 */
+        color: #333; /* 어두운 텍스트 */
+        border: none !important; /* 테두리 제거 */
+        border-radius: 5px; /* 모서리 둥글게 */
+        padding: 10px; /* 내부 여백 */
+        box-shadow: none !important; /* 그림자 제거 */
     }
 
     /* 코드 블록 내부 텍스트 강조 */
