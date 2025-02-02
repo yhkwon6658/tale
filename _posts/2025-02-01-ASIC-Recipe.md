@@ -467,11 +467,25 @@ IP Vendor에서 제공하는 PDK는 일반적으로 **High-Tech 공정**부터 N
 또한, 해외 IP 개발 회사들의 정보를 종합하면 **40nm까지는 ICC로** 구현한 사례들이 있으며,  
 **14/16nm 수준부터는 ICC2를 이용한 개발 사례가 많습니다**.
 
-#### ✅ ICC vs ICC2 공정별 적합성
-| 공정 노드  | 권장 툴 |
-|------------|--------|
-| **40nm 이상 (≥40nm)** | ICC 사용 가능 |
-| **22nm 이하 (≤22nm)** | ICC2 권장 |
+<h4>✅ ICC vs ICC2 공정별 적합성</h4>
+<table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;">공정 노드</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">권장 툴</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><b>40nm 이상 (≥40nm)</b></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">ICC 사용 가능</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><b>22nm 이하 (≤22nm)</b></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">ICC2 권장</td>
+    </tr>
+  </tbody>
+</table>
 
 특히, **FinFET이 도입된 공정부터는 ICC2를 사용하는 것이 적합**하다고 생각됩니다.  
 예를 들어, **TSMC 22nm**부터는 오픈된 문서에서도 기존 28nm ~ 65nm 세대와 구분을 하고 있는 것으로 확인됩니다.
@@ -597,3 +611,8 @@ IP Vendor에서 제공하는 PDK는 일반적으로 **High-Tech 공정**부터 N
 보통 PDK 벤더는 Std. Cell, IO PAD 등에 대하여 위의 모든 파일을 제공합니다. 기술 유출 방지를 위해 gds를 제공하지 않을 수도 있습니다. Memory Compiler의 경우 Milkyway를 제외한 모든 파일이 기본적으로 생성됩니다. 따라서, Memory Compiler에서 생성된 파일들을 이용하여 Milkyway를 생성해야 합니다. Custom library를 제작하는 경우 위의 언급한 모든 파일을 만들어야 합니다.  
 
 # 🔍 3. RTL Simulation
+본격적으로 들어가기 전에 알아야 할 것들이 참 많았죠? 최대한 간략하게 적어 보려고 했는데 워낙 방대한 내용을 다뤄야 하다보니 글이 계속 길어지네요.  
+
+이제 그나마 ASIC 설계 flow에서 가장 고상한(?) RTL에 대하여 이야기 해보도록 하겠습니다.  
+
+(To be continue...)
