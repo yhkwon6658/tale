@@ -1,23 +1,8 @@
 - title: N001-2024-65
   description: Low Power FFT Processor
   image: /assets/chip/layout1.png
-  name: N001-2024-65
-  date: 2024-02-01
-  technology: 65nm
-  die_area: 10mm²
-  core_area: 8mm²
-  performance: 200MHz
-  power: 0.5W
-  information: "This is a low power FFT processor designed for efficient signal processing."
-
+  
 - title: N002-2024-65
   description: 200MHz Clock Generator
   image: /assets/chip/layout2.png
-  name: N002-2024-65
-  date: 2024-02-10
-  technology: 65nm
-  die_area: 12mm²
-  core_area: 9mm²
-  performance: 200MHz
-  power: 0.6W
-  information: "This is a clock generator optimized for high-frequency signal generation."
+  

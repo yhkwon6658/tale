@@ -15,80 +15,46 @@ permalink: /gallery/
 {% endfor %}
 </div>
 
-<!-- 팝업 HTML -->
-<div id="popup" class="popup">
-  <div class="popup-content">
-    <span class="popup-close" onclick="closePopup()">&times;</span>
-    <h2 id="popup-title"></h2>
-    <p><strong>Name:</strong> <span id="popup-name"></span></p>
-    <p><strong>Date:</strong> <span id="popup-date"></span></p>
-    <p><strong>Technology:</strong> <span id="popup-technology"></span></p>
-    <p><strong>Die Area:</strong> <span id="popup-die-area"></span></p>
-    <p><strong>Core Area:</strong> <span id="popup-core-area"></span></p>
-    <p><strong>Performance:</strong> <span id="popup-performance"></span></p>
-    <p><strong>Power:</strong> <span id="popup-power"></span></p>
-    <p><strong>Information:</strong> <span id="popup-info"></span></p>
-  </div>
-</div>
-
 <style>
 /* 그리드 레이아웃 */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 최소 200px, 화면 크기에 따라 자동 조정 */
+  gap: 30px; /* 이미지 간격 */
   justify-content: center;
 }
 
-/* 팝업 스타일 */
-.popup {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  justify-content: center;
+/* 각 아이템 스타일 */
+.gallery-item {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  z-index: 999;
 }
 
-.popup-content {
-  background: #fff;
-  padding: 20px;
+/* 이미지 스타일 */
+.gallery-item img {
+  height: 200px; /* 높이 고정 */
+  width: auto; /* 너비는 이미지 비율에 따라 자동 조정 */
+  object-fit: cover; /* 높이에 맞게 이미지 조정 */
   border-radius: 10px;
-  width: 400px;
-  max-width: 90%;
-  text-align: left;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
 }
 
-.popup-close {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 24px;
-  font-weight: bold;
-  cursor: pointer;
+.gallery-item img:hover {
+  transform: scale(1.1);
+}
+
+/* 텍스트 스타일 */
+.gallery-item p {
+  font-size: 14px;
+  color: #555;
+  margin: 8px 0 0;
+}
+
+.gallery-item p strong {
+  font-size: 16px;
+  color: #333;
 }
 </style>
-
-<script>
-function showPopup(title, name, date, technology, dieArea, coreArea, performance, power, information) {
-  document.getElementById('popup-title').innerText = title;
-  document.getElementById('popup-name').innerText = name;
-  document.getElementById('popup-date').innerText = date;
-  document.getElementById('popup-technology').innerText = technology;
-  document.getElementById('popup-die-area').innerText = dieArea;
-  document.getElementById('popup-core-area').innerText = coreArea;
-  document.getElementById('popup-performance').innerText = performance;
-  document.getElementById('popup-power').innerText = power;
-  document.getElementById('popup-info').innerText = information;
-
-  document.getElementById('popup').style.display = 'flex';
-}
-
-function closePopup() {
-  document.getElementById('popup').style.display = 'none';
-}
-</script>
