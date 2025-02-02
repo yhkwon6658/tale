@@ -19,20 +19,24 @@ permalink: /gallery/
 /* 그리드 레이아웃 */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 최소 200px, 화면 크기에 따라 자동 조정 */
+  gap: 30px; /* 이미지 간격 */
   justify-content: center;
 }
 
 /* 각 아이템 스타일 */
 .gallery-item {
   text-align: center;
-  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* 이미지 스타일 */
 .gallery-item img {
-  width: 100%;
+  height: 200px; /* 높이 고정 */
+  width: auto; /* 너비는 이미지 비율에 따라 자동 조정 */
+  object-fit: cover; /* 높이에 맞게 이미지 조정 */
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s;
@@ -46,8 +50,9 @@ permalink: /gallery/
 .gallery-item p {
   font-size: 14px;
   color: #555;
-  margin-top: 8px;
+  margin: 8px 0 0;
 }
+
 .gallery-item p strong {
   font-size: 16px;
   color: #333;
