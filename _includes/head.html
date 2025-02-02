@@ -57,15 +57,29 @@
         color: #ff6600; /* 링크 호버 */
     }
 
-    /* 다크 모드에서 코드 블록 제외 */
+    /* 다크 모드에서 코드 블록 배경을 흰색으로 설정 */
     body.dark-mode pre,
     body.dark-mode code,
     body.dark-mode .highlight {
-        background-color: inherit !important; /* 다크 모드 배경 제거 */
-        color: inherit !important; /* 다크 모드 텍스트 제거 */
+        background-color: #fff !important; /* 배경을 흰색으로 고정 */
+        color: #333 !important; /* 텍스트 색상은 어두운 회색 */
+        border-radius: 8px; /* 모서리 둥글게 */
+        padding: 10px; /* 내부 여백 */
+        font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; /* 코드 글꼴 */
+        font-size: 14px; /* 글자 크기 */
     }
 
-    /* 다크 모드 버튼 기본 스타일 */
+    /* 일반 모드 코드 블록 스타일 */
+    pre,
+    code {
+        background-color: #f5f5f5; /* 밝은 배경 */
+        color: #333; /* 어두운 텍스트 */
+        border: none; /* 테두리 제거 */
+        border-radius: 8px; /* 모서리 둥글게 */
+        padding: 10px; /* 내부 여백 */
+    }
+
+    /* 다크 모드 버튼 기본 스타일 제거 */
     #theme-toggle {
         all: unset; /* 기본 스타일 초기화 */
         cursor: pointer; /* 클릭 커서 */
