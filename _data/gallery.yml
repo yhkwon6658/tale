@@ -1,6 +1,6 @@
 - title: N001-2024-65
-  description: 4096-Point FFT Processor
   image: /assets/chip/layout1.png
+  description: 4096-Point FFT Processor
   technology: 65nm
   type: IC
   area: 1.276mm²
@@ -8,8 +8,8 @@
   performance: 0.03ms
 
 - title: N002-2024-65
-  description: 200MHz Clock Generator
   image: /assets/chip/layout2.png
+  description: 200MHz Clock Generator
   technology: 65nm
   type: IP
   area: N/A
