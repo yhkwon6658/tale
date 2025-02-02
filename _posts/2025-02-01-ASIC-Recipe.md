@@ -340,14 +340,43 @@ Digital IP (EDK)에서 제공하는 파일은 다음과 같습니다:
 
 ---
 
-### 파일별 주요 사용 툴 요약
-| 파일 | 주요 내용 | 사용 툴 |
-|------|-----------|---------|
-| **gds** | 모든 물리적 정보 | Virtuoso |
-| **lef** | metal 및 pin 정보 (경량화) | Cadence Innovus |
-| **lib** | 논리적 정보 (area, timing 등) | Cadence Genus |
-| **spice netlist** | Transistor-level 구성 | hspice, primelib, calibre |
-| **verilog model** | IP 동작 모델 | VCS, Verdi |
+<h4>### 파일별 주요 사용 툴 요약</h4>
+<table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;">파일</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">주요 내용</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">사용 툴</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><b>gds</b></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">모든 물리적 정보</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Virtuoso</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><b>lef</b></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">metal 및 pin 정보 (경량화)</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Cadence Innovus</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><b>lib</b></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">논리적 정보 (area, timing 등)</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Cadence Genus</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><b>spice netlist</b></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Transistor-level 구성</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">hspice, primelib, calibre</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><b>verilog model</b></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">IP 동작 모델</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">VCS, Verdi</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
@@ -434,12 +463,37 @@ NDM은 **Logical Library와 Physical Library를 통합한 All-in-One 스타일**
 
 ---
 
-### 요약
-| 툴            | 라이브러리 형식  | 생성 방법                       | 주요 특징 |
-|---------------|-----------------|--------------------------------|----------|
-| **ICC**       | Milkyway        | Milkyway 툴 사용                | 안정적이지만 clf 생성 필요. |
-| **ICC2**      | NDM             | ICC2 Library Manager 사용       | Logical/Physical 통합, clf 없이 가능. |
-| **Fusion Compiler** | Fusion Lib | -                      | - |
+<h4>### 요약</h4>
+<table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;">툴</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">라이브러리 형식</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">생성 방법</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">주요 특징</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><b>ICC</b></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Milkyway</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Milkyway 툴 사용</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">안정적이지만 clf 생성 필요.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><b>ICC2</b></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">NDM</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">ICC2 Library Manager 사용</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Logical/Physical 통합, clf 없이 가능.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><b>Fusion Compiler</b></td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Fusion Lib</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">-</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">-</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
@@ -485,7 +539,7 @@ IP Vendor에서 제공하는 PDK는 일반적으로 **High-Tech 공정**부터 N
       <td style="border: 1px solid #ddd; padding: 8px;">ICC2 권장</td>
     </tr>
   </tbody>
-</table>
+</table>  
 
 특히, **FinFET이 도입된 공정부터는 ICC2를 사용하는 것이 적합**하다고 생각됩니다.  
 예를 들어, **TSMC 22nm**부터는 오픈된 문서에서도 기존 28nm ~ 65nm 세대와 구분을 하고 있는 것으로 확인됩니다.
