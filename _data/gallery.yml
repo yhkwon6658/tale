@@ -1,8 +1,12 @@
 - title: N001-2024-65
   description: Low Power FFT Processor
   image: /assets/chip/layout1.png
-  
+  technology: 65nm
+  performance: < 1ms
+
 - title: N002-2024-65
-  description: 200MHz Clock Generator
+  description: Clock Generator
   image: /assets/chip/layout2.png
+  technology: 65nm
+  performance: < 200MHz
   

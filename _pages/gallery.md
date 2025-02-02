@@ -8,7 +8,15 @@ permalink: /gallery/
 <div class="gallery">
 {% for item in site.data.gallery %}
   <div class="gallery-item">
-    <img src="{{ item.image }}" alt="{{ item.title }}">
+    <div class="image-container">
+      <img src="{{ item.image }}" alt="{{ item.title }}">
+      <div class="info-overlay">
+        <p><strong>Name:</strong> {{ item.title }}</p>
+        <p><strong>Description:</strong> {{ item.description }}</p>
+        <p><strong>Technology:</strong> {{ item.technology }}</p>
+        <p><strong>Performance:</strong> {{ item.performance }}</p>
+      </div>
+    </div>
     <p><strong>{{ item.title }}</strong></p>
     <p>{{ item.description }}</p>
   </div>
@@ -32,29 +40,48 @@ permalink: /gallery/
   align-items: center;
 }
 
+/* 이미지 컨테이너 */
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
 /* 이미지 스타일 */
-.gallery-item img {
+.image-container img {
+  width: 100%;
   height: 200px; /* 높이 고정 */
-  width: auto; /* 너비는 이미지 비율에 따라 자동 조정 */
-  object-fit: cover; /* 높이에 맞게 이미지 조정 */
+  object-fit: cover; /* 이미지 비율 유지 */
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s;
 }
 
-.gallery-item img:hover {
+.image-container img:hover {
   transform: scale(1.1);
 }
 
-/* 텍스트 스타일 */
-.gallery-item p {
-  font-size: 14px;
-  color: #555;
-  margin: 8px 0 0;
+/* 오버레이 정보 */
+.info-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* 반투명 검정 배경 */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  opacity: 0; /* 기본적으로 숨김 */
+  transition: opacity 0.3s ease; /* 전환 효과 */
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
 }
 
-.gallery-item p strong {
-  font-size: 16px;
-  color: #333;
+.image-container:hover .info-overlay {
+  opacity: 1; /* 마우스 오버 시 표시 */
 }
 </style>
