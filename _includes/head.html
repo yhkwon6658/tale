@@ -17,11 +17,39 @@
   <!-- RSS -->
   {% feed_meta %}
 
+  <!-- 다크 모드 스타일 추가 -->
+  <style>
+    /* 다크 모드 활성화 시 스타일 */
+    body.dark-mode {
+      background-color: #121212; /* 어두운 배경 */
+      color: #e0e0e0; /* 밝은 텍스트 */
+    }
+
+    /* 다크 모드에서 링크 스타일 */
+    body.dark-mode a {
+      color: #80d8ff; /* 링크 색상 */
+    }
+
+    body.dark-mode a:hover {
+      color: #ffffff; /* 링크에 마우스 오버 시 */
+    }
+
+    /* 다크 모드 네비게이션 스타일 */
+    body.dark-mode .nav-container {
+      background-color: #1f1f1f; /* 네비게이션 바 배경 */
+      color: #e0e0e0; /* 네비게이션 텍스트 */
+    }
+
+    body.dark-mode .nav-container a {
+      color: #80d8ff; /* 네비게이션 링크 색상 */
+    }
+
+    body.dark-mode .nav-container a:hover {
+      color: #ffffff; /* 네비게이션 링크 호버 */
+    }
+  </style>
+
   <!-- Google Analytics-->
-  <!-- {% if site.google_analytics and jekyll.environment == 'production' %}
-  {% include analytics.html %}
-  {% endif %} -->
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-G87HD3KC9S"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
