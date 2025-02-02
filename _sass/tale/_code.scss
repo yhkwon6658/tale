@@ -9,10 +9,22 @@ code {
   color: $code-color;
   font-size: 85%;
   padding: .25em .5em;
+
+  /* 다크 모드 스타일 추가 */
+  body.dark-mode & {
+    background-color: #2e2e2e; /* 다크 모드 배경 */
+    color: #ffffff; /* 다크 모드 텍스트 */
+  }
 }
 
 pre {
   margin: 0 0 1rem;
+
+  /* 다크 모드 스타일 추가 */
+  body.dark-mode & {
+    background-color: #2e2e2e;
+    color: #ffffff;
+  }
 }
 
 pre code {
@@ -29,6 +41,12 @@ pre code {
   margin: 0 0 1rem;
   padding: 1rem;
 
+  /* 다크 모드 스타일 추가 */
+  body.dark-mode & {
+    background-color: #2e2e2e;
+    color: #ffffff;
+  }
+
   pre {
     margin-bottom: 0;
     overflow-x: auto;
@@ -38,6 +56,12 @@ pre code {
     color: $default-tint;
     display: inline-block; // Ensures the null space also isn't selectable
     padding: 0 .75rem 0 .25rem;
+
+    /* 다크 모드 라인 번호 */
+    body.dark-mode & {
+      color: #999999;
+    }
+
     // Make sure numbers aren't selectable
     -webkit-user-select: none;
        -moz-user-select: none;
