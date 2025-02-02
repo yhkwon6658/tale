@@ -4,7 +4,7 @@
   technology: 65nm
   type: IC
   area: 1.276mm²
-  power: N/A
+  power: 24.5mW @(1.08-1.32V, 200MHz)
   performance: 0.03ms
 
 - title: N002-2024-65
