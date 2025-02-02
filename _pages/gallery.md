@@ -11,6 +11,7 @@ permalink: /gallery/
     <div class="image-container">
       <img src="{{ item.image }}" alt="{{ item.title }}">
       <div class="info-overlay">
+        <p><strong>Technology:</strong> {{ item.description }}</p>
         <p><strong>Technology:</strong> {{ item.technology }}</p>
         <p><strong>Type:</strong> {{ item.type }}</p>
         <p><strong>Area:</strong> {{ item.area }}</p>
@@ -19,7 +20,6 @@ permalink: /gallery/
       </div>
     </div>
     <p><strong>{{ item.title }}</strong></p>
-    <p>{{ item.description }}</p>
   </div>
 {% endfor %}
 </div>

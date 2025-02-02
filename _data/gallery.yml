@@ -1,5 +1,5 @@
 - title: N001-2024-65
-  description: Low Power FFT Processor
+  description: 4096-Point FFT Processor
   image: /assets/chip/layout1.png
   technology: 65nm
   type: IC
