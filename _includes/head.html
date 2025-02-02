@@ -58,6 +58,22 @@
       color: #ff6600; /* 링크 호버 */
     }
 
+    /* 다크 모드 코드 블록 스타일 */
+    body.dark-mode pre,
+    body.dark-mode code {
+      background-color: #2e2e2e; /* 어두운 배경 */
+      color: #ffffff; /* 밝은 텍스트 */
+      border-radius: 8px; /* 모서리 둥글게 */
+      padding: 10px; /* 내부 여백 */
+      font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; /* 코드 글꼴 */
+      font-size: 14px; /* 글자 크기 */
+    }
+
+    /* 코드 블록 내부 텍스트 강조 */
+    body.dark-mode code span {
+      color: #ffcc00; /* 강조된 텍스트 색상 (예: 키워드) */
+    }
+    
     /* 다크 모드 버튼 기본 스타일 제거 */
     #theme-toggle {
       all: unset; /* 기본 스타일 초기화 */
