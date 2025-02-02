@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Category"
+author: "Yonghwan Kwon"
 permalink: /tags/
 ---
 
