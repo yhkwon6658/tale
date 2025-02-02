@@ -47,55 +47,39 @@ permalink: /gallery/
   display: inline-block;
 }
 
-/* 이미지 크기 반응형 조정 */
+/* 이미지 스타일 */
 .image-container img {
-  width: 100%; /* 컨테이너 너비에 맞게 조정 */
-  max-width: 100%; /* 최대 너비 제한 */
-  height: auto; /* 비율 유지 */
+  width: 100%;
+  height: 300px; /* 높이 고정 */
+  object-fit: cover; /* 이미지 비율 유지 */
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
 }
 
 .image-container img:hover {
   transform: scale(1.1);
 }
 
-/* 오버레이 텍스트 스타일 */
+/* 오버레이 정보 */
 .info-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.7); /* 반투명 검정 배경 */
   color: white;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* 상단에서 시작 */
-  align-items: flex-start; /* 좌측 정렬 */
-  text-align: left; /* 텍스트 좌측 정렬 */
-  padding: 15px; /* 여백 추가 */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  opacity: 0; /* 기본적으로 숨김 */
+  transition: opacity 0.3s ease; /* 전환 효과 */
+  padding: 10px;
   box-sizing: border-box;
-  opacity: 0;
-  transition: opacity 0.3s ease;
   border-radius: 10px;
-  line-height: 1.5; /* 줄 간격 조정 */
-  word-wrap: break-word; /* 긴 단어가 잘리도록 설정 */
-}
-
-/* 텍스트 안에서 개별 항목 스타일 */
-.info-overlay p {
-  margin: 8px 0; /* 문단 간격 조정 */
-  font-size: 14px; /* 글자 크기 */
-}
-
-/* 반응형 스타일 */
-@media (max-width: 768px) {
-  .info-overlay {
-    padding: 10px; /* 모바일 화면에서 여백 감소 */
-    line-height: 1.4; /* 줄 간격 약간 줄이기 */
-    font-size: 13px; /* 텍스트 크기 줄이기 */
-  }
 }
 
 .image-container:hover .info-overlay {
