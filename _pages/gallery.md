@@ -61,24 +61,24 @@ permalink: /gallery/
   transform: scale(1.1);
 }
 
-/* 오버레이 정보 */
+/* 오버레이 텍스트 스타일 */
 .info-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7); /* 반투명 검정 배경 */
+  background: rgba(0, 0, 0, 0.7);
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
-  opacity: 0; /* 기본적으로 숨김 */
-  transition: opacity 0.3s ease; /* 전환 효과 */
-  padding: 10px;
+  align-items: flex-start; /* 좌측 정렬 */
+  text-align: left; /* 텍스트 좌측 정렬 */
+  padding: 15px; /* 텍스트와 경계 사이 여백 */
   box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 0.3s ease;
   border-radius: 10px;
 }
 
