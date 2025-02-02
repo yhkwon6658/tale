@@ -57,6 +57,14 @@
         color: #ff6600; /* 링크 호버 */
     }
 
+    /* 다크 모드에서 코드 블록 제외 */
+    body.dark-mode pre,
+    body.dark-mode code,
+    body.dark-mode .highlight {
+        background-color: inherit !important; /* 다크 모드 배경 제거 */
+        color: inherit !important; /* 다크 모드 텍스트 제거 */
+    }
+
     /* 다크 모드 버튼 기본 스타일 */
     #theme-toggle {
         all: unset; /* 기본 스타일 초기화 */
