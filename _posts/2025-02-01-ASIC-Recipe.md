@@ -65,10 +65,16 @@ ASIC이라고 하면 많은 분들이 **합성(Synthesis)**이나 **PnR(Place & 
 등에 대해 사전에 익히거나, 툴 사용법을 배우는 과정에서 틈틈이 공부해 두는 것이 필요합니다.  
 
 <div style="text-align: center;">
-  <img src="https://github.com/user-attachments/assets/31a6caf3-5123-4b4c-a6ab-5a480e9e20d6" 
+  <img src="https://github.com/user-attachments/assets/3716a39b-a2ee-4d95-aea3-d73bcbe74aed" 
        alt="System Diagram" height="300">
   <p style="text-align: center;"><em>그림 1. 원격 시스템 구성도</em></p>
 </div>
+
+<!-- <div style="text-align: center;">
+  <img src="https://github.com/user-attachments/assets/31a6caf3-5123-4b4c-a6ab-5a480e9e20d6" 
+       alt="System Diagram" height="300">
+  <p style="text-align: center;"><em>그림 1. 원격 시스템 구성도</em></p>
+</div> -->
 
 **그림 1**은 일반적으로 ASIC 관련 툴을 사용하는 시스템 구성을 나타냅니다.   
 Local의 사용자는 **Mobaxterm**이나 **Putty** 같은 툴을 이용해   **SSH 방식**으로 툴이 설치된 서버에 원격 접속합니다.   
