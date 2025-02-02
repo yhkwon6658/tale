@@ -27,64 +27,70 @@
     gtag('config', 'G-G87HD3KC9S');
   </script>
 
-  <!-- 다크 모드 스타일 추가 -->
   <style>
     /* 다크 모드 활성화 시 반전 색상 */
     body.dark-mode {
-      background-color: #000; /* 완전 검은색 */
-      color: #fff; /* 완전 흰색 */
+        background-color: #000; /* 완전 검은색 */
+        color: #fff; /* 완전 흰색 */
     }
 
     /* 다크 모드에서 반전된 링크 스타일 */
     body.dark-mode a {
-      color: #ffcc00; /* 노란색 */
+        color: #ffcc00; /* 노란색 */
     }
 
     body.dark-mode a:hover {
-      color: #ff6600; /* 오렌지색 */
+        color: #ff6600; /* 오렌지색 */
     }
 
     /* 다크 모드 네비게이션 스타일 */
     body.dark-mode .nav-container {
-      background-color: #000; /* 네비게이션 바 반전 배경 */
-      color: #fff; /* 텍스트 흰색 */
+        background-color: #000; /* 네비게이션 바 반전 배경 */
+        color: #fff; /* 텍스트 흰색 */
     }
 
     body.dark-mode .nav-container a {
-      color: #ffcc00; /* 링크 색상 */
+        color: #ffcc00; /* 링크 색상 */
     }
 
     body.dark-mode .nav-container a:hover {
-      color: #ff6600; /* 링크 호버 */
+        color: #ff6600; /* 링크 호버 */
     }
 
     /* 다크 모드 코드 블록 스타일 */
     body.dark-mode pre,
     body.dark-mode code {
-      background-color: #2e2e2e; /* 어두운 배경 */
-      color: #ffffff; /* 밝은 텍스트 */
-      border-radius: 8px; /* 모서리 둥글게 */
-      padding: 10px; /* 내부 여백 */
-      font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; /* 코드 글꼴 */
-      font-size: 14px; /* 글자 크기 */
+        background-color: #2e2e2e; /* 어두운 배경 */
+        color: #ffffff; /* 밝은 텍스트 */
+        border: none; /* 테두리 제거 */
+        border-radius: 8px; /* 모서리 둥글게 */
+        padding: 10px; /* 내부 여백 */
+        font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; /* 코드 글꼴 */
+        font-size: 14px; /* 글자 크기 */
+    }
+
+    /* 일반 모드 코드 블록 스타일 */
+    pre,
+    code {
+        border: none; /* 테두리 제거 */
     }
 
     /* 코드 블록 내부 텍스트 강조 */
     body.dark-mode code span {
-      color: #ffcc00; /* 강조된 텍스트 색상 (예: 키워드) */
+        color: #ffcc00; /* 강조된 텍스트 색상 (예: 키워드) */
     }
-    
+
     /* 다크 모드 버튼 기본 스타일 제거 */
     #theme-toggle {
-      all: unset; /* 기본 스타일 초기화 */
-      cursor: pointer; /* 클릭 커서 */
-      font-size: 20px; /* 아이콘 크기 */
+        all: unset; /* 기본 스타일 초기화 */
+        cursor: pointer; /* 클릭 커서 */
+        font-size: 20px; /* 아이콘 크기 */
     }
 
     /* 버튼에 마우스를 올릴 때 효과 */
     #theme-toggle:hover {
-      transform: scale(1.1); /* 크기 확대 */
-      transition: transform 0.2s ease-in-out; /* 부드러운 전환 */
+        transform: scale(1.1); /* 크기 확대 */
+        transition: transform 0.2s ease-in-out; /* 부드러운 전환 */
     }
   </style>
 </head>
