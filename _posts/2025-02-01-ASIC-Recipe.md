@@ -340,7 +340,7 @@ Digital IP (EDK)에서 제공하는 파일은 다음과 같습니다:
 
 ---
 
-<h4>파일별 주요 사용 툴 요약</h4>
+### 파일별 주요 사용 툴 요약
 <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
   <thead>
     <tr>
@@ -461,7 +461,7 @@ NDM은 **Logical Library와 Physical Library를 통합한 All-in-One 스타일**
 
 ---
 
-<h4>Summary</h4>
+### 요약
 <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
   <thead>
     <tr>
@@ -492,6 +492,7 @@ NDM은 **Logical Library와 Physical Library를 통합한 All-in-One 스타일**
     </tr>
   </tbody>
 </table>
+</br>
 
 Synopsys 툴은 각 세대별로 독자적인 라이브러리를 사용하며,  
 Milkyway와 NDM은 각각의 툴에 맞게 생성됩니다.  
@@ -517,7 +518,7 @@ IP Vendor에서 제공하는 PDK는 일반적으로 **High-Tech 공정**부터 N
 또한, 해외 IP 개발 회사들의 정보를 종합하면 **40nm까지는 ICC로** 구현한 사례들이 있으며,  
 **14/16nm 수준부터는 ICC2를 이용한 개발 사례가 많습니다**.
 
-<h4>✅ ICC vs ICC2 공정별 적합성</h4>
+### ✅ ICC vs ICC2 공정별 적합성
 <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
   <thead>
     <tr>
