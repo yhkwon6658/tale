@@ -274,73 +274,326 @@ ASIC Model 포팅의 경우 Pure FPGA인 **Xilinx Virtex 계열**혹은 **Altera
 **그림 2**의 경우 **ASIC Model**과 **IO Hub** 모두 **Openvino FPGA**를 이용하여 구현하였습니다.  
 
 # 🔍 2. Library Preparation
-측정이 무엇보다 중요하기도 하고, 생각해야 하는 문제가 꽤 많아서 `Emulation` 파트는 다소 길었습니다. 불행히도, RTL 코딩과 시뮬레이션을 이야기 하기 전에 우리는 합성 및 그 후속 과정들을 진행하기 위해 여러가지 데이터 타입에 대해 이해해야 하며, 각 단계에서 사용하기 위한 library를 준비해야 합니다.  
 
-TSMC나 Samsung 같은 PDK 벤더는 우리에게 어떤 것들을 제공할까요?
+`Emulation` 파트는 중요하고 다룰 내용이 많아 다소 길었습니다.  
+이제 **RTL 코딩 및 시뮬레이션**으로 넘어가기 전에, **합성(Synthesis)**과 그 후속 과정들을 위해 **다양한 데이터 타입**에 대해 이해하고, 각 단계에서 사용할 **Library를 준비**해야 합니다.
 
-- Analog PDK
-  - Device library (NMOS, PMOS)
+---
+
+### PDK 벤더가 제공하는 주요 데이터
+TSMC나 Samsung 같은 PDK 벤더는 다음과 같은 데이터를 제공합니다:
+
+#### 1️⃣ **Analog PDK**
+- **Device 관련**:
+  - Device Library (NMOS, PMOS)
   - Device Spice Model
-  - gds mapfile
-  - device mapfile
-  - calibreview mapfile
+  - gds mapfile, device mapfile, calibreview mapfile
   - Virtuoso techfile
+- **Rule Deck 관련**:
   - DRC/LVS/PEX rule deck
   - Dummy Insertion rule deck
   - hcell for LVS/PEX
-- Digital IP (EDK)
-  - Standard Cell Library
-  - IO PAD Library
-  - Memory Compiler
-  - icc/icc2 tech file
-  - icc/icc2 gds mapfile
-  - icc/icc2 tlup files
-  - icc/icc2 tlup mapfile
-  - icc/icc2 antenna rule file
-  - innovus lef tech file
-  - innovus gds mapfile
 
-꽤 많은 것들을 제공합니다. 디테일 하게는 더 많은 것들이 제공됩니다. 이런 생각을 가진 분도 계실 수 있습니다. **저는 디지털 회로설계를 하고 싶은데 Analog PDK로 무엇을 주는지 알아야 하나요?** 네 알아야 합니다. 안타깝지만, RTL 코딩은 설계의 일부일 뿐 `PnR`, `STA`, `Post-Layout Simulation` 이 끝난 뒤에는 `Physical Verification` 과정이 필요하며, `Sign-Off DRC/LVS`라고도 부릅니다. 이 과정에서 Analog PDK가 필요할 수 있습니다. 혹은 Clock Generator, Memory 등 Custom IP가 필요한 Mixed IC design을 해야할 수도 있습니다. 혹은 특별한 기능을 가진 Standard Cell을 직접 만들어야 할 수도 있습니다.  
+#### 2️⃣ **Digital IP (EDK)**
+- **Standard Cell Library**
+- **IO PAD Library**
+- **Memory Compiler**
+- **Tool-specific Files**:
+  - icc/icc2 tech file, gds mapfile, antenna rule file, tlup/tlup mapfile
+  - innovus lef tech file, gds mapfile
 
-기술한 이유들로 Analog PDK에 대해서도 잘 이해하고 있어야 하며, Full-Custom이 아닌 PnR의 경우 Analog 설계자들이 하시는 것처럼 단순히 GUI만을 이용하여 Sign-Off를 수행할 수 없는 경우가 많아 Batch 모드에서 수행해야 할 수 있습니다. 따라서, Assura 혹은 Calibre 등의 rule deck 및 커맨드에 대해서도 숙지하셔야 합니다.  
+---
 
-이 정도로 우선 정리하고 그럼 Digital IP로 제공 받는 Standard Cell Library, IO PAD Library, Memory Compiler는 어떤 것들을 제공하는지 알아볼까요?
+### Analog PDK의 중요성
+**디지털 설계**만 한다고 해도 Analog PDK에 대한 이해는 필수적입니다.  
+이는 **Physical Verification** 단계에서 사용되는 **Sign-Off DRC/LVS** 과정에 Analog PDK가 필요할 수 있기 때문입니다.
 
-- gds (physical information)
-- lef (routing information)
-- lib (logical information)
-- spice netlist (transistor level netlist)
-- verilog model (operation model)
+#### 주요 이유:
+1. **Mixed IC Design**: Clock Generator, Memory 같은 Hard IP 설계.
+2. **Custom Standard Cell**: 특별한 기능을 가진 Standard Cell 설계.
+3. **Batch 모드 Sign-Off**: Assura, ICV, Calibre 등 LVS시 rule deck 및 spice 사용.
 
-먼저, gds는 어떤 IP가 담고 있는 모든 물리적 정보 (well, via, metal, poly 등)를 담고 있는 파일입니다. Full-Custom을 진행하든 PnR을 진행하든 Foundry에 최종적으로 제공하는 파일은 gds이기도 합니다.  
+---
 
-lef는 Place 및 Routing을 위해 gds에서 metal 및 pin에 대한 정보만 추출한 파일이라고 이해하시면 되겠습니다. PnR 툴이 gds를 사용하면 정보가 너무 많아 tool이 일을 하기 힘들어 한다는 내용들을 찾아 보실 수 있을 겁니다. Cadence의 Innovus는 이 lef 파일을 이용합니다.  
+### Digital IP가 제공하는 주요 파일
+Digital IP (EDK)에서 제공하는 파일은 다음과 같습니다:
 
-lib은 각 IP의 동작, 핀의 포트종류, area, capacitance, transition time, setup/hold, recovery/removal, operation 등 다양한 logical 정보를 담고 있습니다. Cadence의 Genus는 이 lib 파일을 이용합니다.  
+1. **gds**:
+   - **물리적 정보**: well, via, metal, poly 등.
+   - Foundry에 최종적으로 제출하는 파일.
+   - Full-Custom 및 PnR 과정에서 필수적.
 
-spice netlist는 transistor 수준에서 cell이 어떻게 구성되어있는지를 다루며, RC 정보 등이 포함되어 있습니다. 이를 이용하여 hspice simulation, LVS 등을 수행합니다. Analog PDK에 device (transistor)가 존재할 경우 spice 파일을 virtuoso로 import하여 schematic으로 변환할 수 있습니다. CDK라고 하여 virtuoso에서 사용 가능한 schematic 및 layout을 제공하기도 합니다. 일반적인 경우, CDK 라이브러리를 OA (Open Access)라이브러리로 변환하는 과정이 필요할 수 있으며, **나인플러스**에서 방법을 잘 소개해 주고 계십니다.  
+2. **lef**:
+   - gds에서 metal 및 pin 정보를 추출한 파일.
+   - Place 및 Routing을 위한 경량화된 정보.
 
-verilog model은 각 IP들의 동작을 기술하고 있으며, RTL simulation에 사용됩니다.  
+3. **lib**:
+   - **논리적 정보**: area, capacitance, transition time, setup/hold, recovery/removal, operation 등.
+
+4. **spice netlist**:
+   - Transistor-level netlist 및 RC 정보 포함.
+   - **hspice simulation** 및 **LVS** 수행에 사용.
+   - Analog PDK의 device를 Virtuoso로 import하여 schematic 변환 가능.
+
+5. **verilog model**:
+   - IP의 동작 모델로, **RTL 시뮬레이션**에 사용.
+
+---
+
+### 파일별 주요 사용 툴 요약
+| 파일 | 주요 내용 | 사용 툴 |
+|------|-----------|---------|
+| **gds** | 모든 물리적 정보 | Virtuoso |
+| **lef** | metal 및 pin 정보 (경량화) | Cadence Innovus |
+| **lib** | 논리적 정보 (area, timing 등) | Cadence Genus |
+| **spice netlist** | Transistor-level 구성 | hspice, primelib, calibre |
+| **verilog model** | IP 동작 모델 | VCS, Verdi |
+
+---
+
+### 추가 고려 사항
+1. **OA(Open Access) 변환**:  
+   - PDK ventor는 spice, gds를 따로 따로 virtuoso의 schematic, layout으로 변환해야 하는 번거로움을 줄여 주고자 virtuoso용 라이브러리인 CDK를 제공하기도 함.
+   - Virtuoso용 CDK 라이브러리를 OA로 변환해야 함.  
+   - 변환 방법은 **나인플러스**의 가이드를 참고.
+
+2. **Analog 설계자처럼 GUI 의존 불가**:  
+   - Batch 모드에서 Calibre를 사용하기 위해 명령어 및 Rule Deck의 문법 숙지 필요.
+
+---
+
+이상으로 PDK와 Digital IP의 주요 데이터 및 활용에 대해 정리했습니다.  
+추후에 각 파일을 실제 설계 과정에서 어떻게 사용하는지 다루도록 하겠습니다.
 
 ---
 ## Synopsys Tool Library
-Synopsys의 경우 Cadence와 다른 라이브러리 형식을 사용합니다. 저는 Synopsys 툴들을 사용하고 있기 때문에 Synopsys 툴에 관해서 조금 더 자세하게 다루도록 하겠습니다. 이후에 Innovus로 갈아타게 된다면 Innovus에 대해서도 자세히 다루도록 하겠습니다.  
 
-Logical library의 경우 Library Compiler를 이용하여 lib을 db라는 포맷으로 변환하여 사용합니다. lib의 경우 ASCII로 작성되어 파일이 크고 무겁습니다. db는 바이너리 압축 포맷입니다. 일반적으로, 벤더는 여러가지 VT (Voltage, Temperature) 코너에 대하여 lib, db를 모두 제공합니다. Synopsys 툴을 이용하더라도 엔지니어가 Cell의 정보를 확인할 때는 ASCII 형식인 lib을 보게 됩니다.  
-
-Physical library의 경우 다소 복잡합니다. Synopsys의 PnR툴은 ICC, ICC2, Fusion Compiler라는 3세대 툴이 모두 공식적으로 판매되고 있습니다. Cadence가 Encounter에서 Innovus로 전환한 것과 다르게 무려 3세대 툴이 전부 살아있는 겁니다. 이는 각 툴이 사용하는 Physical library가 다르기 때문이기도 합니다.  
-
-#### 1️⃣ Milkyway for ICC
-먼저, ICC의 경우 지금은 라인업에서 빠진 Astro에서 사용하던 Milkyway라는 library를 사용합니다. Synopsys는 Solvnet 사이트에서 Milkyway library를 만들기 위한 RM (Reference Methodology)를 제공하고 있습니다. User Guide는 많이 빈약합니다 😢. 
-
-Milkyway library를 만들기 위해서 **Milkyway**라는 툴을 이용합니다 (이름이 같으니 주의 요망!). gds를 이용하여 Milkyway를 만드는 방법, lef를 이용하여 Milkyway를 만드는 방법이 존재합니다. 개인적인 경험으로는 lef를 이용하는 방법이 훨씬 변환이 잘 되었습니다. 이때 lef를 Milkyway로 변환하기 위해 lef, gds, db, tech file, gds mapfile, clf 등이 사용됩니다. 여기서 clf는 처음 등장하는 파일인데요. Synopsys에서 사용하는 Cell의 Antenna Property를 기술하는 파일입니다. clf는 IP 벤더가 제공하는 경우도 있고, 그렇지 않은 경우도 있습니다. 그렇지 않은 경우 일반적으로 lef 파일 내에 기술되어 있거나 alef 등의 이름으로 분리되어 lef 형식으로 제공됩니다. 이 경우 Bash script를 작성하여 lef를 clf 형식으로 수정하는 작업이 필요합니다. 과거에는 Herculues라는 툴을 이용하여 clf를 추출하는 것이 가능하였습니다. 그러나, Herculues가 단종되고 ICV (IC Validator)로 바뀌게 되면서 ICV를 Milkyway, ICC에서 연동하여 사용하는 기능이 사라졌습니다. 따라서, lef에서 clf로 Bash script를 이용하여 직접 변환하지 않는 한 Milkyway를 만들기 위해 Antenna Property를 extraction하는 기능은 사용할 수 있는 방법이 존재하지 않습니다.  
-
-#### 2️⃣ NDM for ICC2
-ICC2의 경우 ICC와는 다른 독자적인 라이브러리인 NDM을 개발하여 사용합니다. NDM은 logical library 및 physical library를 병합한 all-in-one 스타일의 라이브러리라고 이해하시면 됩니다. NDM 역시 Solvnet에서 RM을 제공하고 있습니다. NDM의 경우 lef를 이용하는 방법, gds를 이용하는 방법 외에 Milkyway를 이용하는 방법도 존재합니다. IP 벤더들이 Milkyway를 제공하고 있었기 때문에 엔지니어들을 새로운 라인업인 ICC2로 끌어들이기 위해선 NDM으로의 migration이 필수였기 때문입니다. NDM의 경우 Milkyway와 달리 ICC2에 내장된 library manager를 이용하여 만들게 됩니다. 이때, ICC2에서 ICV를 사용할 수 있는 기능은 여전히 살아 있어 clf가 없더라도 NDM을 만들기 위한 antenna property extraction이 가능합니다.  
+Synopsys는 Cadence와는 다른 형식의 라이브러리를 사용합니다.  
+저는 Synopsys 툴을 주로 사용하므로, 이에 대해 더 자세히 다루겠습니다.  
+(추후 Innovus로 전환하게 되면 Innovus에 대한 내용도 다룰 예정입니다.)
 
 ---
+
+### Logical Library
+Synopsys에서는 **Library Compiler**를 이용해 `lib` 파일을 `db` 형식으로 변환하여 사용합니다:
+- **lib**: ASCII 형식, 파일 크기가 크고 무거움.
+- **db**: 바이너리 압축 포맷, 더 가볍고 효율적.
+
+벤더는 일반적으로 여러 **VT (Voltage, Temperature) 코너**에 대해 lib와 db를 모두 제공합니다.  
+Synopsys 툴을 사용하더라도 엔지니어가 Cell 정보를 확인할 때는 **lib (ASCII)** 형식을 주로 봅니다.
+
+---
+
+### Physical Library
+Synopsys는 현재 다음의 3세대 PnR 툴을 공식적으로 판매하고 있습니다:
+1. **ICC (1세대)**
+2. **ICC2 (2세대)**
+3. **Fusion Compiler (3세대)**
+
+각 툴은 서로 다른 Physical Library를 사용하며, 이는 툴이 공존하는 주요 이유 중 하나입니다.
+
+---
+
+#### 1️⃣ Milkyway (ICC용)
+ICC는 Synopsys의 초기 PnR 툴인 Astro에서 사용하던 **Milkyway Library**를 사용합니다.  
+Milkyway Library를 생성하기 위해 Synopsys는 SolvNet에서 **Reference Methodology (RM)**을 제공합니다.
+
+- **Milkyway Library 생성 방법**:  
+  Milkyway Library는 **Milkyway 툴**을 사용해 생성합니다. (포맷이랑 툴 이름이 같아요 😅😄)
+  - **lef**를 이용하는 방법 (추천): 변환이 더 안정적.  
+  - **gds**를 이용하는 방법.
+
+- **필요 파일**:
+  - lef, gds, db, tech file, gds mapfile, clf.  
+  - **clf**: Cell의 Antenna Property를 기술하는 파일로,  
+    IP 벤더가 제공하거나 **lef**에서 추출하여 생성.  
+    (**Bash script**를 만들어 변환 작업 수행.)
+
+- **제약 사항**:
+  - 과거에는 Herculues 툴로 clf를 추출했으나,  
+    현재는 ICV (IC Validator)로 대체되면서 이 기능이 사라짐.  
+  - 따라서, Bash script로 직접 변환하지 않으면  
+    Milkyway 생성 시 Antenna Property를 추출할 수 없음.
+
+---
+
+#### 2️⃣ NDM (ICC2용)
+ICC2는 기존 Milkyway Library와 달리 **NDM (New Data Model)**이라는 독자적인 라이브러리를 사용합니다.  
+NDM은 **Logical Library와 Physical Library를 통합한 All-in-One 스타일**입니다.
+
+- **NDM Library 생성 방법**:  
+  NDM Library는 **ICC2에 내장된 Library Manager**를 사용해 생성합니다.
+  - **lef** 및 **gds**를 이용.  
+  - lef이나 gds가 아닌 기존 **Milkyway**를 기반으로 변환 가능.  
+
+- **필요 파일**: lef, gds, db, tech file, gds mapfile, clf, Milkyway (선택).  
+
+- **장점**:
+  - ICC2에 내장된 Library Manager로 NDM 생성 가능.  
+  - **ICV**를 사용해 clf 없이도 NDM 생성 시 Antenna Property 추출 가능.
+
+---
+
+### 요약
+| 툴            | 라이브러리 형식  | 생성 방법                       | 주요 특징 |
+|---------------|-----------------|--------------------------------|----------|
+| **ICC**       | Milkyway        | Milkyway 툴 사용                | 안정적이지만 clf 생성 필요. |
+| **ICC2**      | NDM             | ICC2 Library Manager 사용       | Logical/Physical 통합, clf 없이 가능. |
+| **Fusion Compiler** | Fusion Lib | -                      | - |
+
+---
+
+Synopsys 툴은 각 세대별로 독자적인 라이브러리를 사용하며,  
+Milkyway와 NDM은 각각의 툴에 맞게 생성됩니다.  
+- **Milkyway Library**: Milkyway 툴을 사용.  
+- **NDM Library**: ICC2의 Library Manager를 사용.  
+
+언젠가 기회가 되면 GPDK를 이용해 Milkyway, NDM을 만드는 방법을 다루도록 하겠습니다.  
+물론, GPDK가 충분히 필요한 데이터를 모두 제공한다면...
+
+---
+
 ## Tool Selection에 관하여
-Fusion Compiler에서 사용하는 Fusion Lib을 만들기 위한 RM은 아직 공식적으로 배포되지 않고 있습니다. 또한, Fusion Compiler는 아직 정상궤도에 오르지 않은 것으로 보입니다. 따라서, 현재까지는 ICC/ICC2를 선택하는 것이 적합해 보입니다.  
 
-IP Vendor에서 제공하는 PDK는 보통 꽤나 high tech 공정부터 NDM을 공식적으로 지원합니다. 일반적으로, 학계에서 사용되는 14nm/16nm/22nm/28nm/40nm/45nm/65nm 혹은 그 이상의 공정에선 Milkyway를 지원합니다. 저의 경우 벤더가 제공하는 라이브러리는 웬만하면 건드리는 일을 피하고 싶어 ICC를 기준으로 설계 방법론을 만들었습니다. 만약, ICC2로 옮기게 된다면 ICC2 기준 방법론에 대하여 업데이트 하도록 하겠습니다.  
+현재 **Fusion Compiler**에서 사용하는 **Fusion Lib**을 만들기 위한 **Reference Methodology (RM)**은  
+아직 공식적으로 배포되지 않았으며, Fusion Compiler 자체도 안정화되지 않은 상태로 보입니다.  
+따라서, **현 시점에서는 ICC/ICC2를 선택하는 것이 적합**합니다.
 
+---
+
+### ICC vs ICC2: 어떤 툴을 선택할 것인가?
+IP Vendor에서 제공하는 PDK는 일반적으로 **High-Tech 공정**부터 NDM을 공식적으로 지원합니다.  
+제가 아는 바에 따르면 한 회사는 **7nm부터 공식적으로 NDM을 지원하고 있습니다**.  
+또한, 해외 IP 개발 회사들의 정보를 종합하면 **40nm까지는 ICC로** 구현한 사례들이 있으며,  
+**14/16nm 수준부터는 ICC2를 이용한 개발 사례가 많습니다**.
+
+#### ✅ ICC vs ICC2 공정별 적합성
+| 공정 노드  | 권장 툴 |
+|------------|--------|
+| **40nm 이상 (≥40nm)** | ICC 사용 가능 |
+| **22nm 이하 (≤22nm)** | ICC2 권장 |
+
+특히, **FinFET이 도입된 공정부터는 ICC2를 사용하는 것이 적합**하다고 생각됩니다.  
+예를 들어, **TSMC 22nm**부터는 오픈된 문서에서도 기존 28nm ~ 65nm 세대와 구분을 하고 있는 것으로 확인됩니다.
+
+---
+
+### 저의 PDK 및 Tool Flow 선택
+저는 **28nm, 65nm 공정**을 사용하고 있으며,  
+현재 설계 플로우는 **ICC를 기준으로 구축**하였습니다.
+
+- **28nm의 경우**, 현재 **Front-End까지만 진행 중**이므로  
+  ICC로 28nm까지 완벽히 커버할 수 있을지는 아직 검증되지 않았습니다.
+- 따라서, 본 포스팅에서 소개하는 플로우는 **40nm 이상의 공정에서 적합**함을 미리 알려드립니다.
+
+---
+
+## My Selected Tool List
+다음은 제가 ASIC 설계를 위해 사용하고 있는 툴들을 정리한 목록입니다.  
+**(Emulation 및 PCB 설계 관련 툴은 제외)**
+
+### ✅ **Cadence**
+- **Virtuoso** (Full-Custom Layout)
+- **Abstract Generator** (LEF 생성)
+
+### ✅ **Siemens**
+- **Calibre** (Physical Verification: DRC/LVS/PEX)
+
+### ✅ **Synopsys**
+- **VCS** (RTL Simulation)
+- **Verdi** (Debug & Waveform Analysis)
+- **Design Compiler** (Synthesis)
+- **IC Compiler** (PnR for ICC)
+- **Library Compiler** (lib → db 변환)
+- **Milkyway** (Physical Library Prepare for ICC)
+- **PrimeLib** (Cell Library Characterization)
+- **PrimeTime** (Static Timing Analysis)
+- **StarRC** (Parasitic Extraction)
+- **Hspice** (Circuit Simulation)
+
+---
+
+### 추가 고려 사항
+- **Custom Standard Cell IP를 사용하지 않는 경우**:
+  - **Abstract Generator, PrimeLib, Hspice**는 필수적이지 않음.
+- **ICC2 기반으로 전환할 경우**:
+  - Milkyway 대신 **ICC2의 Library Manager**를 사용해야 함.
+  
+---
+### Custom Standard Cell Library
+
+저는 연구 목적으로 **특별한 Flip-flop(FF)** 을 설계하여 사용했습니다.  
+이를 **Synthesis 및 PnR**에서 사용하려면 **DC 및 ICC**에서 읽을 수 있는 **Custom Library**를 제작해야 합니다.
+
+---
+
+### Custom Library 제작 과정
+다음은 Custom Library 제작 과정을 요약한 내용입니다:
+
+1. **Schematic 및 Layout 제작**
+   - Virtuoso에서 **Schematic** 및 **Layout**을 완성.
+   - **DRC/LVS/PEX**를 수행하며, PEX 출력 형식을 **dspf** 또는 **spef**로 선택.
+
+2. **lib 파일 생성**
+   - **PrimeLib**을 이용하여 lib 파일을 생성.  
+   - **입력 파일**: PEX에서 출력한 dspf, Analog PDK의 hspice model.
+   - **설정 기준**: VT 코너 및 Characterization 기준 정의 (IP 벤더 제공 데이터시트 및 lib 파일 참고).
+
+3. **Characterization**
+   - PrimeLib은 **transition time, setup/hold** 등을 Characterization.  
+   - **Spice Simulator 선택**:  
+     - hspice, primesim, finesim 중 선택 가능.  
+     - 제 경우 **PrimeLib 내장 primesim** 또는 hspice 사용.
+
+4. **lib 및 Verilog 모델 추출**
+   - PrimeLib에서 lib 파일과 Verilog 모델 추출.
+   - 추출된 lib 파일의 타이밍 정보가 schematic simulation 또는 spice simulation 결과와 유사한지 확인.
+   - 추출된 Verilog 모델을 **VCS, Verdi**를 이용하여 RTL simulation 수행.
+
+5. **LEF 파일 생성**
+   - **Abstract Generator**를 사용하여 Virtuoso의 layout과 lib 파일을 기반으로 **LEF 파일 생성**.
+
+6. **Antenna Property 변환**
+   - **LEF 파일**에서 antenna property 정보를 추출해 **CLF 형식으로 변환**.
+   - 이를 위해 Batch Script를 만들어야 함.
+
+7. **GDS Streamout**
+   - Virtuoso에서 layout을 GDS 형식으로 **streamout**.
+
+8. **Library Compiler 변환**
+   - lib 파일을 Library Compiler로 **db 형식으로 변환**.
+
+9. **Milkyway 라이브러리 생성**
+   - 생성된 lef, gds, db를 기반으로 Milkyway 라이브러리 생성.
+   - ICC에서 Milkyway를 열어 pin, metal 위치가 정확히 추출되었는지 확인.
+
+---
+
+### 제작 시 고려사항
+1. **PG Pin의 Pitch**
+   - VDD 및 VSS **PG Pin**은 일정한 pitch로 배치되어야 합니다.
+   - 보통 **PG 메탈**은 수평으로 직선 배치.
+
+2. **PnR 툴의 배치 방식**
+   - PnR 툴은 일정 간격으로 **power rail**을 배치하고, 그 위에 Standard Cell을 배치.
+   - VDD, VSS 라인과 핀의 위치는 **power rail 간격에 정확히 맞춰야 함**.
+   - 이때 pitch에 대한 정보는 보통 ICC/ICC2 techfile (.tf)의 unit 혹은 tile 등의 이름을 가진 layer에 기술되어 있음.
+   - 또는 Standard Cell을 Virtuoso에서 열어 직접 간격을 찾는 것도 가능.
+
+---
+
+위 과정은 요약된 내용으로, 실제로는 매우 복잡하며 다양한 요소를 고려해야 합니다.  
+만약 **GPDK**가 앞선 플로우를 재현할 수 있을 만큼 충분한 데이터를 담고 있는 것이 있다면,  
+**Custom Cell Library 제작**에 대한 자세한 내용을 다룰 기회를 가지도록 하겠습니다.
+
+---
+
+꽤 길었습니다. 정리하면, Library Preparation 단계를 거쳐 다음과 같은 포맷의 파일들을 가지고 있어야 합니다.  
+- lib/lef/gds (Global data format)
+- db/Milkyway (Used in Synopsys tool)
+- spice; spi, dspf, spef 등 (LVS or Characterization)
+- verilog (RTL Simulation)
+
+보통 PDK 벤더는 Std. Cell, IO PAD 등에 대하여 위의 모든 파일을 제공합니다. 기술 유출 방지를 위해 gds를 제공하지 않을 수도 있습니다. Memory Compiler의 경우 Milkyway를 제외한 모든 파일이 기본적으로 생성됩니다. 따라서, Memory Compiler에서 생성된 파일들을 이용하여 Milkyway를 생성해야 합니다. Custom library를 제작하는 경우 위의 언급한 모든 파일을 만들어야 합니다.  
+
+# 🔍 3. RTL Simulation
