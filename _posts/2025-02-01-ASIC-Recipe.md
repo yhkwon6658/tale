@@ -340,7 +340,7 @@ Digital IP (EDK)에서 제공하는 파일은 다음과 같습니다:
 
 ---
 
-<h4>### 파일별 주요 사용 툴 요약</h4>
+<h4>파일별 주요 사용 툴 요약</h4>
 <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
   <thead>
     <tr>
@@ -377,8 +377,6 @@ Digital IP (EDK)에서 제공하는 파일은 다음과 같습니다:
     </tr>
   </tbody>
 </table>
-
----
 
 ### 추가 고려 사항
 1. **OA(Open Access) 변환**:  
@@ -463,7 +461,7 @@ NDM은 **Logical Library와 Physical Library를 통합한 All-in-One 스타일**
 
 ---
 
-<h4>### 요약</h4>
+<h4>Summary</h4>
 <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
   <thead>
     <tr>
@@ -494,8 +492,6 @@ NDM은 **Logical Library와 Physical Library를 통합한 All-in-One 스타일**
     </tr>
   </tbody>
 </table>
-
----
 
 Synopsys 툴은 각 세대별로 독자적인 라이브러리를 사용하며,  
 Milkyway와 NDM은 각각의 툴에 맞게 생성됩니다.  
